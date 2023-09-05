@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class HW2 {
     static Random random = new Random();
-
+    static Scanner sc = new Scanner(System.in);
     static String[][] gameField = new String[6][6];
     static void printGameField(){
         //Method to print gamefield in console.
@@ -61,32 +61,9 @@ public class HW2 {
 
 
     }
-
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        creatClearGameField();
-        System.out.println("Secret "+Arrays.deepToString(coordinatesOfBoat()));
-        printGameField();
-        System.out.println("All Set. Get ready to rumble!");
-
-
-//        String regex = "^[1-5]$";
+    private static int[] userInputWithValidation(){
         //Check input of user
-        Integer userColumn = null;
-        System.out.println("Player enter the number of column in range from 1-5.");
-        do {
-            if (!(userColumn==null)) {
-                System.out.println("That's not a number in range from 1-5.");
-            }
-            while (!sc.hasNextInt()){
-                System.out.println("That's not a number in range from 1-5");
-                sc.next();
-            }
-            userColumn = sc.nextInt();
-        } while ((!(userColumn>=1) || !(userColumn<=5)));
-
-        //Check input of user
-        System.out.println("Player enter the number of raw in range from 1-5.");
+        System.out.println("Player enter the number of COLUMN in range from 1-5.");
         Integer userRaw = null;
         do {
             if (!(userRaw==null)) {
@@ -98,9 +75,67 @@ public class HW2 {
             }
             userRaw = sc.nextInt();
         } while ((!(userRaw>=1) || !(userRaw<=5)));
-        System.out.printf("You chose column: %d and raw: %d",userColumn,userRaw);
+
+        //Check input of user
+        Integer userColumn = null;
+        System.out.println("Player enter the number of RAW in range from 1-5.");
+        do {
+            if (!(userColumn==null)) {
+                System.out.println("That's not a number in range from 1-5.");
+            }
+            while (!sc.hasNextInt()){
+                System.out.println("That's not a number in range from 1-5");
+                sc.next();
+            }
+            userColumn = sc.nextInt();
+        } while ((!(userColumn>=1) || !(userColumn<=5)));
 
 
+        System.out.printf("You chose COLUMN: %d and RAW: %d \n",userColumn,userRaw);
+        return new int[]{userColumn,userRaw};
+
+    }
+    public static void main(String[] args) {
+
+        creatClearGameField();
+        int[][] secret =coordinatesOfBoat();
+        System.out.println("Secret "+ Arrays.deepToString(secret));
+        printGameField();
+        System.out.println("All Set. Get ready to rumble!");
+
+        int succses_hit_counter = 0;
+        boolean column,raw;
+
+        do {
+            int[] user_input = userInputWithValidation();
+            column = false;
+            raw = false;
+            for (int s : secret[0]){
+                if (s == user_input[0]){
+                    System.out.println("Column correct");
+                    column=!column;
+                }
+            }
+            for (int s : secret[1]){
+                if (s == user_input[1]){
+                    System.out.println("Raw correct");
+                    raw=!raw;
+                }
+            }
+            if (column && raw){
+                succses_hit_counter++;
+                gameField[user_input[0]][user_input[1]]="*";
+                printGameField();
+                System.out.printf("You hit the boat, %d times.\n",succses_hit_counter);
+            } else {
+                gameField[user_input[0]][user_input[1]]="X";
+                printGameField();
+                System.out.println("You miss! Try one more time.");
+            }
+        } while (!(succses_hit_counter ==3));
+
+        System.out.println("\n\nCongratulates! You win!");
+//        String regex = "^[1-5]$";
 
 
     }
