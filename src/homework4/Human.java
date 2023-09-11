@@ -33,11 +33,12 @@ public class Human {
         System.out.printf("New object Human was created %s %s \n",nameArg,surnameArg);
     }
     void greetPet(){
-        System.out.printf("Привіт, %s \n",pet);
+        System.out.printf("Привіт, %s \n",pet.getNickname());
     }
     void describePet(){
         System.out.printf("У мене є %s, їй %s років, він %s \n",pet.getSpecies(),pet.getAge(),pet.getTrickLevel()>50?"дуже хитрий":"майже не хитрий");
     }
+    @Override
     public String toString(){
         String description = String.format("Human{name='%s', surname='%s', year=%d, iq=%d, mother=%s %s, father=%s %s, pet=%s{nickname='%s', age=%d, trickLevel=%d, habits=%s}} \n",getName(),getSurname(),getYear(),getIq(),getMother().getName(),getMother().getSurname(),getFather().getName(),getFather().getSurname(),pet.getSpecies(),pet.getNickname(),pet.getAge(),pet.getTrickLevel(), Arrays.toString(pet.getHabits()));
         System.out.printf(description);
@@ -112,6 +113,7 @@ class HumanTest{
     public static void main(String[] args) {
         Human human1 = new Human("Den","Secretovskiy",1991,new Human("Vlad","Yama",1991),new Human("Oksana","Petrova",1991));
         human1.toString();
+        human1.greetPet();
         human1.describePet();
     }
 }

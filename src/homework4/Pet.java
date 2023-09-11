@@ -32,6 +32,7 @@ public class Pet {
     void foul(){
         System.out.println("Потрібно добре замести сліди...");
     }
+    @Override
     public String toString(){
         String myReturnString = String.format("%s{nickname='%s', age=%d, trickLevel=%d, habits=[%s]",species,nickname,age,trickLevel, Arrays.toString(habits));
         System.out.println(myReturnString);
