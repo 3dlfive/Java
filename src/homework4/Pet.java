@@ -13,7 +13,7 @@ public class Pet {
         this(species2,nickname2,0,0,new String[]{"play on street","sleep a lot"});
     }
     Pet(){
-        this("cat","Dryzhok",1,40,new String[]{"murchatb","catch mouses"});
+        this("unknown","unknownName",0,0,new String[]{});
     }
     Pet(String species,String nickname,int age2,int trickLevel2,String[] habbits2){
         this.setSpecies(species);

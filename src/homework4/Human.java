@@ -8,27 +8,28 @@ public class Human {
     private int year;
     private int iq; // 0-100
     private Pet pet ; // Object Pet
-    private Human mother;
-    private Human father;
-    private String[][] schedule;
+    private Family family;
+
+
+
+    private String[][] schedule ;
     Human(){
-        this("UnknownName","UnknownSurname",1991,new Pet(),null,null,new String[][] {{"Sun","Mon","Tue","Wed","Thur","Fri","Sat"},{}});
+        this("UnknownName","UnknownSurname",1991,new Pet(),null,new String[][] {{"Sun","Mon","Tue","Wed","Thur","Fri","Sat"},{"t1","t2","t3","t4","t5","t5","t5"}});
     }
-    Human(String nameArg,String surnameArg,int yearArg,Human motherArg,Human fatherArg){
-        this( nameArg,surnameArg,yearArg,new Pet(),motherArg,fatherArg,new String[][] {{"Sun","Mon","Tue","Wed","Thur","Fri","Sat"},{}});
+    Human(String nameArg,String surnameArg,int yearArg,Family family){
+        this( nameArg,surnameArg,yearArg,new Pet(), family,new String[][] {{"Sun","Mon","Tue","Wed","Thur","Fri","Sat"},{"t1","t2","t3","t4","t5","t5","t5"}});
 
     }
     Human(String nameArg,String surnameArg,int yearArg){
-        this(nameArg,surnameArg,yearArg,new Pet(),new Human(),new Human(),new String[][] {{"Sun","Mon","Tue","Wed","Thur","Fri","Sat"},{}});
+        this(nameArg,surnameArg,yearArg,new Pet(),null, new String[][] {{"Sun","Mon","Tue","Wed","Thur","Fri","Sat"},{"t1","t2","t3","t4","t5","t5","t5"}});
 
     }
-    Human(String nameArg,String surnameArg,int yearArg,Pet petArg,Human motherArg,Human fatherArg,String[][] scheduleArg){
+    Human(String nameArg,String surnameArg,int yearArg,Pet petArg,Family family,String[][] scheduleArg){
         this.setName(nameArg);
         this.setSurname(surnameArg);
         this.setYear(yearArg);
         this.setPet(petArg);
-        this.setMother(motherArg);
-        this.setFather(fatherArg);
+        this.setFamily(family);
         this.setSchedule(scheduleArg);
     }
     void greetPet(){
@@ -37,12 +38,7 @@ public class Human {
     void describePet(){
         System.out.printf("У мене є %s, їй %s років, він %s \n",pet.getSpecies(),pet.getAge(),pet.getTrickLevel()>50?"дуже хитрий":"майже не хитрий");
     }
-    @Override
-    public String toString(){
-        String description = String.format("Human{name='%s', surname='%s', year=%d, iq=%d, mother=%s %s, father=%s %s, pet=%s{nickname='%s', age=%d, trickLevel=%d, habits=%s}} \n",getName(),getSurname(),getYear(),getIq(),getMother().getName(),getMother().getSurname(),getFather().getName(),getFather().getSurname(),pet.getSpecies(),pet.getNickname(),pet.getAge(),pet.getTrickLevel(), Arrays.toString(pet.getHabits()));
-        System.out.printf(description);
-        return description;
-    }
+
 
     public String getName() {
         return name;
@@ -84,34 +80,51 @@ public class Human {
         this.pet = pet;
     }
 
-    public Human getMother() {
-        return mother;
+    public void setFamily(Family f){
+        this.family=f;
+    }
+    public  Family getFamily(){
+     return family;
     }
 
-    public void setMother(Human mother) {
-        this.mother = mother;
-    }
 
-    public Human getFather() {
-        return father;
-    }
-
-    public void setFather(Human father) {
-        this.father = father;
-    }
-
-    public String[][] getSchedule() {
-        return schedule;
-    }
 
     public void setSchedule(String[][] schedule) {
         this.schedule = schedule;
+
+    }
+    public String[] getScheduleNormolized() {
+        System.out.println(schedule.length);
+        String[] normalizedArray = new String[schedule[0].length];
+
+        for (int cell=0;cell<normalizedArray.length;cell++){
+            normalizedArray[cell]="["+schedule[0][cell]+","+schedule[1][cell]+"]";
+        }
+
+        return normalizedArray;
+        }
+    public String[][] getSchedule() {
+     return schedule;
+    }
+    @Override
+    public String toString() {
+        return "Human{" +
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", year=" + year +
+                ", iq=" + iq +
+                ", schedule=" + Arrays.toString(getScheduleNormolized()) +
+                '}';
     }
 }
-class HumanTest{
+
+
+
+    class HumanTest{
     public static void main(String[] args) {
-        Human human1 = new Human("Den","Secretovskiy",1991,new Human("Vlad","Yama",1991),new Human("Oksana","Petrova",1991));
-        human1.toString();
+        Human human1 = new Human("Den","Secretovskiy",1991, Family.builder().withFather(new Human("Anto","Kirov",1992)).withMother(new Human("Oksana","Danivna",2001)).build());
+        System.out.println(human1.toString());
+
         human1.greetPet();
         human1.describePet();
     }
