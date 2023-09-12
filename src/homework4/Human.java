@@ -69,7 +69,12 @@ public class Human {
     }
 
     public void setIq(int iq) {
-        this.iq = iq;
+        if ((iq>0 && iq<100)){
+            this.iq = iq;
+        } else{
+            throw new IllegalStateException("We expect iq in range 0-100. ");
+        }
+
     }
 
     public Pet getPet() {

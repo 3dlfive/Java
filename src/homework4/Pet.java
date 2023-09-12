@@ -56,7 +56,12 @@ public class Pet {
     }
 
     public void setTrickLevel(int trickLevel) {
-        this.trickLevel = trickLevel;
+        if (trickLevel>=0&&trickLevel<=100){
+            this.trickLevel = trickLevel;
+
+        } else {
+            throw new IllegalStateException("Exspect trciklevel in range from 1 to 100.");
+        }
     }
 
     public String getSpecies() {
