@@ -46,7 +46,8 @@ public class Family {
     public static class FamilyBuilder {
         private Human mother;
         private Human father;
-        private Human[] children;
+        private Human[] children = new Human[]{};
+
         private Pet pet;
         public FamilyBuilder withMother(Human mother){
             this.mother=mother;
@@ -59,6 +60,7 @@ public class Family {
         public FamilyBuilder withChildren(Human[] children){
             this.children=children;
             return this;
+
         }
         public FamilyBuilder withPet(Pet pet){
             this.pet=pet;
@@ -79,5 +81,6 @@ class FamilyTest{
         Family f1 = Family.builder().withMother(new Human("Oksana","Pertovna",1991)).withFather(new Human("Oleg","Kopchik",1992))
                 .build();
         System.out.println(f1.toString());
+        System.out.println(Arrays.toString(f1.getChildren()));
     }
 }

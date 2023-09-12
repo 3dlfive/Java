@@ -30,7 +30,6 @@ public class Human {
         this.setMother(motherArg);
         this.setFather(fatherArg);
         this.setSchedule(scheduleArg);
-        System.out.printf("New object Human was created %s %s \n",nameArg,surnameArg);
     }
     void greetPet(){
         System.out.printf("Привіт, %s \n",pet.getNickname());
