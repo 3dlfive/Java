@@ -100,6 +100,7 @@ public class Family {
 
         private Pet pet;
         public FamilyBuilder withMother(Human mother){
+//            mother.setFamily(this);// Как присвоить ту же семью
             this.mother=mother;
             return this;
         }

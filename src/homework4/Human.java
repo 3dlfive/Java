@@ -39,7 +39,23 @@ public class Human {
     void describePet(){
         System.out.printf("У мене є %s, їй %s років, він %s \n",pet.getSpecies(),pet.getAge(),pet.getTrickLevel()>50?"дуже хитрий":"майже не хитрий");
     }
+    public boolean feedPet(boolean bool){
+        int r = (int)(Math.random()*100);
+        int petT = this.pet.getTrickLevel();
+        if (bool){
+            System.out.println("Pet is feeded.");
+            return true;
+        }else{
+            if ( petT!=r){
+                System.out.printf("Думаю, %s не голодний.\n",this.pet.getNickname());
+                return false;
+            } else {
+                System.out.printf("Хм... годувати %s \n",this.pet.getNickname());
+                return true;
 
+            }
+        }
+    }
 
     public String getName() {
         return name;
@@ -130,7 +146,7 @@ public class Human {
         Human human1 = new Human("Den","Secretovskiy",1991, Family.builder().withFather(new Human("Anto","Kirov",1992)).withMother(new Human("Oksana","Danivna",2001)).build());
         System.out.println(human1.toString());
 
-        human1.greetPet();
+        human1.feedPet(false);
         human1.describePet();
     }
 }
