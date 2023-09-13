@@ -42,7 +42,15 @@ public class Family {
                 ", pet=" + pet +
                 '}';
     }
+    public void addChild(Human child){
 
+        child.setFamily(Family.builder().withMother(new Human(this.getMother().getName(),this.getMother().getSurname() ,1998)).withFather(new Human(this.getFather().getName(),this.getFather().getSurname(), 1992))
+                .build());
+        Human[] childrenTempArr ;
+        childrenTempArr =Arrays.copyOf(children,children.length+1);
+        childrenTempArr[childrenTempArr.length-1]= child;
+        this.children = childrenTempArr;
+    }
     public static class FamilyBuilder {
         private Human mother;
         private Human father;
@@ -81,6 +89,8 @@ class FamilyTest{
         Family f1 = Family.builder().withMother(new Human("Oksana","Pertovna",1991)).withFather(new Human("Oleg","Kopchik",1992))
                 .build();
         System.out.println(f1.toString());
-        System.out.println(Arrays.toString(f1.getChildren()));
+        f1.addChild(new  Human("Nina","Petro",2020));
+        Human ch1 = f1.getChildren()[0];
+        System.out.println(ch1.getFamily());
     }
 }
