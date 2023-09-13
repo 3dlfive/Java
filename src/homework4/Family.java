@@ -51,6 +51,42 @@ public class Family {
         childrenTempArr[childrenTempArr.length-1]= child;
         this.children = childrenTempArr;
     }
+    public boolean deleteChild(int indexOfChild){
+        if ((indexOfChild>=0 && indexOfChild<=this.children.length)){
+            Human[] childArr1=new Human[this.children.length-1];
+            for(int index=0;index<this.children.length-1;index++){
+                if (index >= indexOfChild ){
+                    childArr1[index]=this.children[index+1];
+                } else {
+                    childArr1[index]=this.children[index];
+                }
+            }
+            this.children=childArr1;
+            System.out.println(Arrays.toString(childArr1));
+//            if(this.children.length>=3){
+//                Human[] childArr1 = Arrays.copyOfRange(children,0,indexOfChild-1);
+//                Human[] childArr2 = Arrays.copyOfRange(children,indexOfChild+1,children.length);
+//                this.children=concatTwoArray(childArr1,childArr2);
+//            }
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public Human[] concatTwoArray(Human[] arr1,Human[] arr2){
+        //Method to concat two Human arrays
+        Human[] result = new Human[arr1.length+arr2.length];
+        int position = 0;
+        for (Human el:arr1){
+            result[position]=el;
+            position++;
+        } for (Human el:arr2){
+            result[position]=el;
+            position++;
+        }
+        return result;
+    }
     public static class FamilyBuilder {
         private Human mother;
         private Human father;
@@ -90,7 +126,11 @@ class FamilyTest{
                 .build();
         System.out.println(f1.toString());
         f1.addChild(new  Human("Nina","Petro",2020));
-        Human ch1 = f1.getChildren()[0];
-        System.out.println(ch1.getFamily());
+        f1.addChild(new  Human("Nina2","Petro2",2021));
+        f1.addChild(new  Human("Nina3","Petro3",2021));
+
+        System.out.println(f1.getChildren().length);
+        f1.deleteChild(0);
+        System.out.println(f1.getChildren().length);
     }
 }
