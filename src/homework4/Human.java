@@ -9,8 +9,12 @@ public class Human {
     private int iq; // 0-100
     private Pet pet ; // Object Pet
     private Family family;
-
-
+    static {
+        System.out.println("New class Human loaded");
+        }
+    {
+        System.out.println("New Human object created.");
+    }
 
     private String[][] schedule ;
     Human(){

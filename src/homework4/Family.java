@@ -7,6 +7,12 @@ public class Family {
     private Human father;
     private Human[] children;
     private Pet pet;
+    static {
+        System.out.println("New class Family loaded");
+    }
+    {
+        System.out.println("New Family object created.");
+    }
 
     protected Family(Human mother,Human father,Human[] children,Pet pet){
         this.mother=mother;
@@ -100,7 +106,7 @@ public class Family {
 
         private Pet pet;
         public FamilyBuilder withMother(Human mother){
-//            mother.setFamily(this);// Как присвоить ту же семью
+//            mother.setFamily(this);//Не работает Как присвоить ту же семью
             this.mother=mother;
             return this;
         }
