@@ -23,9 +23,12 @@ public class Family {
     }
 
     public Human[] getChildren() {
+
         return children;
     }
-
+    public int countFamily(){
+        return 2+ children.length;
+    }
     public Pet getPet() {
         return pet;
     }
@@ -33,15 +36,7 @@ public class Family {
         return new FamilyBuilder();
     }
 
-    @Override
-    public String toString() {
-        return "Family{" +
-                "mother=" + mother +
-                ", father=" + father +
-                ", children=" + Arrays.toString(children) +
-                ", pet=" + pet +
-                '}';
-    }
+
     public void addChild(Human child){
 
         child.setFamily(Family.builder().withMother(new Human(this.getMother().getName(),this.getMother().getSurname() ,1998)).withFather(new Human(this.getFather().getName(),this.getFather().getSurname(), 1992))
@@ -87,6 +82,17 @@ public class Family {
         }
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Family{" +
+                "mother=" + mother +
+                ", father=" + father +
+                ", children=" + Arrays.toString(children) +
+                ", pet=" + pet +
+                '}';
+    }
+
     public static class FamilyBuilder {
         private Human mother;
         private Human father;

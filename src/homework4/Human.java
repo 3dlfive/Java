@@ -24,6 +24,7 @@ public class Human {
         this(nameArg,surnameArg,yearArg,new Pet(),null, new String[][] {{"Sun","Mon","Tue","Wed","Thur","Fri","Sat"},{"t1","t2","t3","t4","t5","t5","t5"}});
 
     }
+
     Human(String nameArg,String surnameArg,int yearArg,Pet petArg,Family family,String[][] scheduleArg){
         this.setName(nameArg);
         this.setSurname(surnameArg);
@@ -99,7 +100,6 @@ public class Human {
 
     }
     public String[] getScheduleNormolized() {
-        System.out.println(schedule.length);
         String[] normalizedArray = new String[schedule[0].length];
 
         for (int cell=0;cell<normalizedArray.length;cell++){
