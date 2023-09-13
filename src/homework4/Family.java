@@ -1,6 +1,7 @@
 package homework4;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class Family {
     private Human mother;
@@ -97,6 +98,19 @@ public class Family {
                 ", children=" + Arrays.toString(children) +
                 ", pet=" + pet +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Family family = (Family) o;
+        return Objects.equals(getMother(), family.getMother()) && Objects.equals(getFather(), family.getFather());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getMother(), getFather());
     }
 
     public static class FamilyBuilder {

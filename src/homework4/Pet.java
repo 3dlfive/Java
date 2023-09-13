@@ -2,6 +2,7 @@ package homework4;
 
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class Pet {
     private String species;
@@ -90,11 +91,24 @@ public class Pet {
         return habits;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pet pet = (Pet) o;
+        return age == pet.age && Objects.equals(species, pet.species) && Objects.equals(nickname, pet.nickname);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(species, nickname, age);
+    }
 }
 class PetTest {
     public static void main(String[] args) {
         Pet sharik = new Pet("dog","Sharick",5,45, new String[]{"eat","sleep"});
         sharik.toString();
+
 
     }
 

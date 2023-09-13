@@ -1,6 +1,7 @@
 package homework4;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class Human {
     private String name;
@@ -140,6 +141,19 @@ public class Human {
                 ", iq=" + iq +
                 ", schedule=" + Arrays.toString(getScheduleNormolized()) +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Human human = (Human) o;
+        return getYear() == human.getYear() && Objects.equals(getName(), human.getName()) && Objects.equals(getSurname(), human.getSurname());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getSurname(), getYear());
     }
 }
 
