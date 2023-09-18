@@ -6,12 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="java-maven-template" />
+        <module name="junit5-jupiter-starter-maven" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="DAnITProjectJ" target="20" />
       <module name="Java" target="1.5" />
+      <module name="java-maven-template" target="18" />
     </bytecodeTargetLevel>
   </component>
 </project>

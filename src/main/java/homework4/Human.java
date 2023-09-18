@@ -8,8 +8,8 @@ public class Human {
     private String surname;
     private int year;
     private int iq; // 0-100
-    private Pet pet ; // Object Pet
-    private Family family;
+    private homework4.Pet pet ; // Object Pet
+    private homework4.Family family;
     static {
         System.out.println("New class Human loaded");
         }
@@ -19,18 +19,18 @@ public class Human {
 
     private String[][] schedule ;
     Human(){
-        this("UnknownName","UnknownSurname",1991,new Pet(),null,new String[][] {{"Sun","Mon","Tue","Wed","Thur","Fri","Sat"},{"t1","t2","t3","t4","t5","t5","t5"}});
+        this("UnknownName","UnknownSurname",1991,new homework4.Pet(),null,new String[][] {{"Sun","Mon","Tue","Wed","Thur","Fri","Sat"},{"t1","t2","t3","t4","t5","t5","t5"}});
     }
-    Human(String nameArg,String surnameArg,int yearArg,Family family){
-        this( nameArg,surnameArg,yearArg,new Pet(), family,new String[][] {{"Sun","Mon","Tue","Wed","Thur","Fri","Sat"},{"t1","t2","t3","t4","t5","t5","t5"}});
+    Human(String nameArg, String surnameArg, int yearArg, homework4.Family family){
+        this( nameArg,surnameArg,yearArg,new homework4.Pet(), family,new String[][] {{"Sun","Mon","Tue","Wed","Thur","Fri","Sat"},{"t1","t2","t3","t4","t5","t5","t5"}});
 
     }
     public Human(String nameArg, String surnameArg, int yearArg){
-        this(nameArg,surnameArg,yearArg,new Pet(),null, new String[][] {{"Sun","Mon","Tue","Wed","Thur","Fri","Sat"},{"t1","t2","t3","t4","t5","t5","t5"}});
+        this(nameArg,surnameArg,yearArg,new homework4.Pet(),null, new String[][] {{"Sun","Mon","Tue","Wed","Thur","Fri","Sat"},{"t1","t2","t3","t4","t5","t5","t5"}});
 
     }
 
-    Human(String nameArg,String surnameArg,int yearArg,Pet petArg,Family family,String[][] scheduleArg){
+    Human(String nameArg, String surnameArg, int yearArg, homework4.Pet petArg, homework4.Family family, String[][] scheduleArg){
         this.setName(nameArg);
         this.setSurname(surnameArg);
         this.setYear(yearArg);
