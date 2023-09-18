@@ -22,7 +22,7 @@ public class Pet {
     Pet(){
         this("unknown","unknownName",0,1,new String[]{});
     }
-    Pet(String species,String nickname,int age2,int trickLevel2,String[] habbits2){
+    public Pet(String species, String nickname, int age2, int trickLevel2, String[] habbits2){
         this.setSpecies(species);
         this.setNickname(nickname);
         this.setAge(age2);
@@ -30,13 +30,13 @@ public class Pet {
         this.setHabits(habbits2);
 
     }
-    void eat(){
+    public void eat(){
         System.out.println("Я ї'м!");
     }
-    void respond(){
+    public void respond(){
         System.out.printf("Привіт, хазяїн. Я - %s . Я скучив!\n",nickname);
     }
-    void foul(){
+    public void foul(){
         System.out.println("Потрібно добре замести сліди...");
     }
     @Override

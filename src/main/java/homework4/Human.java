@@ -25,7 +25,7 @@ public class Human {
         this( nameArg,surnameArg,yearArg,new Pet(), family,new String[][] {{"Sun","Mon","Tue","Wed","Thur","Fri","Sat"},{"t1","t2","t3","t4","t5","t5","t5"}});
 
     }
-    Human(String nameArg,String surnameArg,int yearArg){
+    public Human(String nameArg, String surnameArg, int yearArg){
         this(nameArg,surnameArg,yearArg,new Pet(),null, new String[][] {{"Sun","Mon","Tue","Wed","Thur","Fri","Sat"},{"t1","t2","t3","t4","t5","t5","t5"}});
 
     }
@@ -38,10 +38,10 @@ public class Human {
         this.setFamily(family);
         this.setSchedule(scheduleArg);
     }
-    void greetPet(){
+    public void greetPet(){
         System.out.printf("Привіт, %s \n",pet.getNickname());
     }
-    void describePet(){
+    public void describePet(){
         System.out.printf("У мене є %s, їй %s років, він %s \n",pet.getSpecies(),pet.getAge(),pet.getTrickLevel()>50?"дуже хитрий":"майже не хитрий");
     }
     public boolean feedPet(boolean bool){

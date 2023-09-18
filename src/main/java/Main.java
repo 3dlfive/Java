@@ -1,4 +1,6 @@
-package homework4;
+import homework4.Family;
+import homework4.Human;
+import homework4.Pet;
 
 import java.util.Arrays;
 
