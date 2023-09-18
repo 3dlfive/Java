@@ -1,3 +1,5 @@
+package homework4;
+
 import homework4.Pet;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.*;
@@ -15,9 +17,9 @@ class petClassTest {
         assertEquals("Sharick",petName);
     }
 //new Pet("dog","Sharick",5,45, new String[]{"eat","sleep"});
-    @ParameterizedTest(name="{0} = {2}")
+    @ParameterizedTest(name="{0} = {1}")
     @CsvSource({
-            "Sharick,Sharick",
+            "Kyrsten,Kyrsten",
             "Dodik,Dodik",
             "Mem,Mem",
             "Fifi,Fifi"
