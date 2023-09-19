@@ -2,6 +2,7 @@ package homework4;
 
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class Pet {
     private String species;
@@ -9,13 +10,19 @@ public class Pet {
     private int age;
     private int trickLevel; //0-100
     private String[] habits;
+    static {
+        System.out.println("New Pet Family loaded");
+    }
+    {
+        System.out.println("New Pet object created.");
+    }
     Pet(String species2,String nickname2){
         this(species2,nickname2,0,0,new String[]{"play on street","sleep a lot"});
     }
     Pet(){
-        this("cat","Dryzhok",1,40,new String[]{"murchatb","catch mouses"});
+        this("unknown","unknownName",0,1,new String[]{});
     }
-    Pet(String species,String nickname,int age2,int trickLevel2,String[] habbits2){
+    public Pet(String species, String nickname, int age2, int trickLevel2, String[] habbits2){
         this.setSpecies(species);
         this.setNickname(nickname);
         this.setAge(age2);
@@ -23,13 +30,13 @@ public class Pet {
         this.setHabits(habbits2);
 
     }
-    void eat(){
+    public void eat(){
         System.out.println("Я ї'м!");
     }
-    void respond(){
+    public void respond(){
         System.out.printf("Привіт, хазяїн. Я - %s . Я скучив!\n",nickname);
     }
-    void foul(){
+    public void foul(){
         System.out.println("Потрібно добре замести сліди...");
     }
     @Override
@@ -56,7 +63,12 @@ public class Pet {
     }
 
     public void setTrickLevel(int trickLevel) {
-        this.trickLevel = trickLevel;
+        if (trickLevel>=0&&trickLevel<=100){
+            this.trickLevel = trickLevel;
+
+        } else {
+            throw new IllegalStateException("Exspect trciklevel in range from 1 to 100.");
+        }
     }
 
     public String getSpecies() {
@@ -79,11 +91,24 @@ public class Pet {
         return habits;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pet pet = (Pet) o;
+        return age == pet.age && Objects.equals(species, pet.species) && Objects.equals(nickname, pet.nickname);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(species, nickname, age);
+    }
 }
 class PetTest {
     public static void main(String[] args) {
         Pet sharik = new Pet("dog","Sharick",5,45, new String[]{"eat","sleep"});
         sharik.toString();
+
 
     }
 
