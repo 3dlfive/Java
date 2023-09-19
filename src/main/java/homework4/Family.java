@@ -112,7 +112,10 @@ public class Family {
     public int hashCode() {
         return Objects.hash(getMother(), getFather());
     }
-
+    @Override
+    public void finalize(){
+        System.out.println("Обєкт прибраний" +this.toString());
+    }
     public static class FamilyBuilder {
         private Human mother;
         private Human father;
@@ -147,17 +150,4 @@ public class Family {
         }
     }
 }
-class FamilyTest{
-    public static void main(String[] args) {
-        Family f1 = Family.builder().withMother(new Human("Oksana","Pertovna",1991)).withFather(new Human("Oleg","Kopchik",1992))
-                .build();
-        System.out.println(f1.toString());
-        f1.addChild(new  Human("Nina","Petro",2020));
-        f1.addChild(new  Human("Nina2","Petro2",2021));
-        f1.addChild(new  Human("Nina3","Petro3",2021));
 
-        System.out.println(f1.getChildren().length);
-        f1.deleteChild(0);
-        System.out.println(f1.getChildren().length);
-    }
-}

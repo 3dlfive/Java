@@ -42,7 +42,7 @@ public class Human {
         System.out.printf("Привіт, %s \n",pet.getNickname());
     }
     public void describePet(){
-        System.out.printf("У мене є %s, їй %s років, він %s \n",pet.getSpecies(),pet.getAge(),pet.getTrickLevel()>50?"дуже хитрий":"майже не хитрий");
+        System.out.printf("У мене є %s, їй %s років, він %s \n",pet.getSpecies().getTranslation(),pet.getAge(),pet.getTrickLevel()>50?"дуже хитрий":"майже не хитрий");
     }
     public boolean feedPet(boolean bool){
         int r = (int)(Math.random()*100);
@@ -150,7 +150,10 @@ public class Human {
         Human human = (Human) o;
         return getYear() == human.getYear() && Objects.equals(getName(), human.getName()) && Objects.equals(getSurname(), human.getSurname());
     }
-
+    @Override
+    public void finalize(){
+        System.out.println("Обєкт прибраний" +this.toString());
+    }
     @Override
     public int hashCode() {
         return Objects.hash(getName(), getSurname(), getYear());
