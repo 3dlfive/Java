@@ -2,13 +2,18 @@ package homework4;
 
 import org.junit.jupiter.api.*;
 
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class FamilyTest {
     Family f1 ;
+    Family f3 ;
     @BeforeEach
     void setup(){
         f1 = Family.builder().withMother(new Human("Oksana","Pertovna",1991)).withFather(new Human("Oleg","Kopchik",1992))
+                .build();
+        f3 = Family.builder().withMother(new Human("Yana","Hujen",1992)).withFather(new Human("Den","Topik",1992)).withChildren(new Human[]{new Human("Diana","Dovbik",2012)}).withPet(new Pet(Species.RACOON,"Kiten",6,12,new String[]{"bark","walk"}))
                 .build();
     }
     @AfterEach
@@ -40,5 +45,20 @@ class FamilyTest {
 
     @Test
     void testHashCode() {
+        int hasCode1 =f1.hashCode();
+        int hashCode2 = f3.hashCode();
+        assertEquals(false,hasCode1==hashCode2);
+    }
+    @Test
+    @DisplayName("Test to string method.")
+    void testToString(){
+        String result = f1.toString();
+        String expected = "Family{" +
+                "mother=" + f1.getMother() +
+                ", father=" + f1.getFather() +
+                ", children=" + Arrays.toString(f1.getChildren()) +
+                ", pet=" + f1.getPet() +
+                '}';
+        assertEquals(expected,result);
     }
 }
