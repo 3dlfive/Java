@@ -42,7 +42,7 @@ public class Pet {
     }
     @Override
     public String toString(){
-        String myReturnString = String.format("%s{nickname='%s', age=%d, trickLevel=%d, habits=[%s]",species.getTranslation(),nickname,age,trickLevel, Arrays.toString(habits));
+        String myReturnString = String.format("%s{nickname='%s', age=%d, trickLevel=%d, habits=[%s] \nВміє літати? %s\nМає вовну? %s\nКількість лап %s",species.getTranslation(),nickname,age,trickLevel, Arrays.toString(habits),species.isCanFly(),species.isHasFur(),species.getNumberOfLegs());
         System.out.println(myReturnString);
         return myReturnString;
     }
