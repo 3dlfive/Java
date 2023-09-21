@@ -67,7 +67,7 @@ class FamilyTest {
     @ParameterizedTest(name="{0} = {1}")
     @DisplayName("Check if it removed and back right data.")
     @CsvSource({
-            "2,false",
+            "4,false",
             "1,true",
             "0,true"
     })
@@ -76,9 +76,21 @@ class FamilyTest {
                 .build();
         fam1.addChild(newChild);
         fam1.addChild(newChild2);
-        boolean isDeleated = f3.deleteChild(index);
+        boolean isDeleated = fam1.deleteChild(index);
         System.out.println(expectedResult);
         assertEquals(isDeleated,expectedResult);
+    }
+    @Test
+    @DisplayName("масив children залишається без змін (якщо передати індекс, що виходить за діапазон індексів), та метод повертає правильне значення")
+    void childrenNotChangedAfterInvalidIndex() {
+
+        Family fam1 = Family.builder().withMother(new Human("Yana","Hujen",1992)).withFather(new Human("Den","Topik",1992)).withChildren(new Human[]{new Human("Diana","Dovbik",2012)}).withPet(new Pet(Species.RACOON,"Kiten",6,12,new String[]{"bark","walk"}))
+                .build();
+        fam1.addChild(newChild);
+        fam1.addChild(newChild2);
+        int expectedResult =fam1.getChildren().length;
+        f3.deleteChild(5);
+        assertEquals(fam1.getChildren().length,expectedResult);
     }
 
     @Test
