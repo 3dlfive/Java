@@ -52,6 +52,18 @@ public class Family {
         childrenTempArr[childrenTempArr.length-1]= child;
         this.children = childrenTempArr;
     }
+    public boolean deleteChild(Human child){
+        boolean ifIteminList = false;
+        int indexOfchildtoDelete = 0;
+        for (int i=0;i<children.length;i++)
+            if (children[i].equals(child)) {
+                ifIteminList=true;
+                indexOfchildtoDelete = i;
+            }
+
+        if (ifIteminList) this.deleteChild(indexOfchildtoDelete);
+        return ifIteminList;
+    }
     public boolean deleteChild(int indexOfChild){
         if ((indexOfChild>=0 && indexOfChild<=this.children.length)){
             Human[] childArr1=new Human[this.children.length-1];
@@ -63,7 +75,7 @@ public class Family {
                 }
             }
             this.children=childArr1;
-            System.out.println(Arrays.toString(childArr1));
+//            System.out.println(Arrays.toString(childArr1));
 //            if(this.children.length>=3){
 //                Human[] childArr1 = Arrays.copyOfRange(children,0,indexOfChild-1);
 //                Human[] childArr2 = Arrays.copyOfRange(children,indexOfChild+1,children.length);

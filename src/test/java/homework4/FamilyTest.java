@@ -81,6 +81,35 @@ class FamilyTest {
         assertEquals(isDeleated,expectedResult);
     }
     @Test
+    @DisplayName("Check if Child remove by Human")
+    void deleteChildbyHuman() {
+        Family fam1 = Family.builder().withMother(new Human("Yana","Hujen",1992)).withFather(new Human("Den","Topik",1992)).withChildren(new Human[]{new Human("Diana","Dovbik",2012)}).withPet(new Pet(Species.RACOON,"Kiten",6,12,new String[]{"bark","walk"}))
+                .build();
+        fam1.addChild(newChild);
+        fam1.addChild(newChild2);
+        boolean isDeleated = fam1.deleteChild(newChild2);
+        boolean isDeleated2 = fam1.deleteChild(newChild);
+
+        boolean expectedResult=true;
+
+        assertEquals(isDeleated,expectedResult);
+        assertEquals(isDeleated2,expectedResult);
+    }
+    @Test
+    @DisplayName(value = "Check Remove child not in list.")
+    void deleteChildbyHumanAndCheckIfitnotFromArray() {
+        Family fam1 = Family.builder().withMother(new Human("Yana","Hujen",1992)).withFather(new Human("Den","Topik",1992)).withChildren(new Human[]{new Human("Diana","Dovbik",2012)}).withPet(new Pet(Species.RACOON,"Kiten",6,12,new String[]{"bark","walk"}))
+                .build();
+        Human chTest = new Human("DianaZ","Dovbik",2012);
+        boolean isDeleated = fam1.deleteChild(chTest);
+        System.out.println(Arrays.toString(fam1.getChildren()));
+
+        boolean expectedResult=false;
+
+        assertEquals(isDeleated,expectedResult);
+
+    }
+    @Test
     @DisplayName("масив children залишається без змін (якщо передати індекс, що виходить за діапазон індексів), та метод повертає правильне значення")
     void childrenNotChangedAfterInvalidIndex() {
 

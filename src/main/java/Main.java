@@ -53,6 +53,7 @@ public class Main {
         pet.respond();
         pet.eat();
         pet.foul();
+        f4.deleteChild(new Human("Alex","Krepkiy",2012));
 
     }
 }
