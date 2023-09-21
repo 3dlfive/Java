@@ -45,7 +45,7 @@ public class Family {
 
 
     public void addChild(Human child){
-        System.out.println(this);
+        System.out.println("------THIS"+this);
 //        child.setFamily(Family.builder().withMother(new Human(this.getMother().getName(),this.getMother().getSurname() ,1998)).withFather(new Human(this.getFather().getName(),this.getFather().getSurname(), 1992))
 //                .build());
         Human[] childrenTempArr ;

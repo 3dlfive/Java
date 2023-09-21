@@ -20,6 +20,7 @@ class FamilyTest {
         f3 = Family.builder().withMother(new Human("Yana","Hujen",1992)).withFather(new Human("Den","Topik",1992)).withChildren(new Human[]{new Human("Diana","Dovbik",2012)}).withPet(new Pet(Species.RACOON,"Kiten",6,12,new String[]{"bark","walk"}))
                 .build();
         newChild = new Human("Alex","Deev",1992,f3);
+        newChild2 = new Human("Katerina","Bugrova",1992,f3);
     }
     @AfterEach
     void cleanup(){
@@ -75,7 +76,6 @@ class FamilyTest {
                 .build();
         fam1.addChild(newChild);
         fam1.addChild(newChild2);
-        System.out.println("---->Deti"+ Arrays.toString(fam1.getChildren()));
         boolean isDeleated = f3.deleteChild(index);
         System.out.println(expectedResult);
         assertEquals(isDeleated,expectedResult);
