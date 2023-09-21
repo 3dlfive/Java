@@ -54,6 +54,14 @@ public class Main {
         pet.eat();
         pet.foul();
         f4.deleteChild(new Human("Alex","Krepkiy",2012));
+        /*
+        Loop that full memory and fire method finalize();
+        int counter = 0;
+        do {
+            System.out.println(counter);
+            new Human("Den","Secretovskiy",1991, Family.builder().withFather(new Human("Anto","Kirov",1992)).withMother(new Human("Oksana","Danivna",2001)).build());
+            counter++;
+        } while (!(counter ==10000000)); */
 
     }
 }

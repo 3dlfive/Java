@@ -21,7 +21,7 @@ public class Human {
     Human(){
         this("UnknownName","UnknownSurname",1991,new homework4.Pet(),null,new String[][] {{DayOfWeek.SUNDAY.name(),DayOfWeek.MONDAY.name(),DayOfWeek.THURSDAY.name(),DayOfWeek.WEDNESDAY.name(),DayOfWeek.TUESDAY.name(),DayOfWeek.FRIDAY.name(),DayOfWeek.SATURDAY.name()},{"t1","t2","t3","t4","t5","t5","t5"}});
     }
-    Human(String nameArg, String surnameArg, int yearArg, homework4.Family family){
+    public Human(String nameArg, String surnameArg, int yearArg, homework4.Family family){
         this( nameArg,surnameArg,yearArg,new homework4.Pet(), family,new String[][] {{DayOfWeek.SUNDAY.name(),DayOfWeek.MONDAY.name(),DayOfWeek.THURSDAY.name(),DayOfWeek.WEDNESDAY.name(),DayOfWeek.TUESDAY.name(),DayOfWeek.FRIDAY.name(),DayOfWeek.SATURDAY.name()},{"t1","t2","t3","t4","t5","t5","t5"}});
 
     }
