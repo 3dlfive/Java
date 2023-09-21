@@ -5,24 +5,25 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public class Pet {
-    private String species;
+
     private String nickname;
+    private Species species;
     private int age;
     private int trickLevel; //0-100
     private String[] habits;
-    static {
-        System.out.println("New Pet Family loaded");
-    }
-    {
-        System.out.println("New Pet object created.");
-    }
-    Pet(String species2,String nickname2){
+//    static {
+//        System.out.println("New Pet Family loaded");
+//    }
+//    {
+//        System.out.println("New Pet object created.");
+//    }
+    Pet(Species species2,String nickname2){
         this(species2,nickname2,0,0,new String[]{"play on street","sleep a lot"});
     }
     Pet(){
-        this("unknown","unknownName",0,1,new String[]{});
+        this(Species.DOG,"unknownName",0,1,new String[]{});
     }
-    public Pet(String species, String nickname, int age2, int trickLevel2, String[] habbits2){
+    public Pet(Species species, String nickname, int age2, int trickLevel2, String[] habbits2){
         this.setSpecies(species);
         this.setNickname(nickname);
         this.setAge(age2);
@@ -41,12 +42,15 @@ public class Pet {
     }
     @Override
     public String toString(){
-        String myReturnString = String.format("%s{nickname='%s', age=%d, trickLevel=%d, habits=[%s]",species,nickname,age,trickLevel, Arrays.toString(habits));
+        String myReturnString = String.format("%s{nickname='%s', age=%d, trickLevel=%d, habits=[%s] \nВміє літати? %s\nМає вовну? %s\nКількість лап %s",species.getTranslation(),nickname,age,trickLevel, Arrays.toString(habits),species.isCanFly(),species.isHasFur(),species.getNumberOfLegs());
         System.out.println(myReturnString);
         return myReturnString;
     }
-
-    public void setSpecies(String species) {
+    @Override
+    public void finalize(){
+        System.out.println("Обєкт прибраний" +this.toString());
+    }
+    public void setSpecies(Species species) {
         this.species = species;
     }
 
@@ -71,7 +75,7 @@ public class Pet {
         }
     }
 
-    public String getSpecies() {
+    public Species getSpecies() {
         return species;
     }
 
@@ -103,13 +107,4 @@ public class Pet {
     public int hashCode() {
         return Objects.hash(species, nickname, age);
     }
-}
-class PetTest {
-    public static void main(String[] args) {
-        Pet sharik = new Pet("dog","Sharick",5,45, new String[]{"eat","sleep"});
-        sharik.toString();
-
-
-    }
-
 }

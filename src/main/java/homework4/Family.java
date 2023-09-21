@@ -8,12 +8,12 @@ public class Family {
     private Human father;
     private Human[] children;
     private Pet pet;
-    static {
-        System.out.println("New class Family loaded");
-    }
-    {
-        System.out.println("New Family object created.");
-    }
+//    static {
+//        System.out.println("New class Family loaded");
+//    }
+//    {
+//        System.out.println("New Family object created.");
+//    }
 
     protected Family(Human mother,Human father,Human[] children,Pet pet){
         this.mother=mother;
@@ -45,13 +45,24 @@ public class Family {
 
 
     public void addChild(Human child){
-
-        child.setFamily(Family.builder().withMother(new Human(this.getMother().getName(),this.getMother().getSurname() ,1998)).withFather(new Human(this.getFather().getName(),this.getFather().getSurname(), 1992))
-                .build());
+//        System.out.println("------THIS"+this);
+        child.setFamily(this);
         Human[] childrenTempArr ;
         childrenTempArr =Arrays.copyOf(children,children.length+1);
         childrenTempArr[childrenTempArr.length-1]= child;
         this.children = childrenTempArr;
+    }
+    public boolean deleteChild(Human child){
+        boolean ifIteminList = false;
+        int indexOfchildtoDelete = 0;
+        for (int i=0;i<children.length;i++)
+            if (children[i].equals(child)) {
+                ifIteminList=true;
+                indexOfchildtoDelete = i;
+            }
+
+        if (ifIteminList) this.deleteChild(indexOfchildtoDelete);
+        return ifIteminList;
     }
     public boolean deleteChild(int indexOfChild){
         if ((indexOfChild>=0 && indexOfChild<=this.children.length)){
@@ -64,7 +75,7 @@ public class Family {
                 }
             }
             this.children=childArr1;
-            System.out.println(Arrays.toString(childArr1));
+//            System.out.println(Arrays.toString(childArr1));
 //            if(this.children.length>=3){
 //                Human[] childArr1 = Arrays.copyOfRange(children,0,indexOfChild-1);
 //                Human[] childArr2 = Arrays.copyOfRange(children,indexOfChild+1,children.length);
@@ -112,7 +123,10 @@ public class Family {
     public int hashCode() {
         return Objects.hash(getMother(), getFather());
     }
-
+    @Override
+    public void finalize(){
+        System.out.println("Обєкт прибраний" +this.toString());
+    }
     public static class FamilyBuilder {
         private Human mother;
         private Human father;
@@ -147,17 +161,4 @@ public class Family {
         }
     }
 }
-class FamilyTest{
-    public static void main(String[] args) {
-        Family f1 = Family.builder().withMother(new Human("Oksana","Pertovna",1991)).withFather(new Human("Oleg","Kopchik",1992))
-                .build();
-        System.out.println(f1.toString());
-        f1.addChild(new  Human("Nina","Petro",2020));
-        f1.addChild(new  Human("Nina2","Petro2",2021));
-        f1.addChild(new  Human("Nina3","Petro3",2021));
 
-        System.out.println(f1.getChildren().length);
-        f1.deleteChild(0);
-        System.out.println(f1.getChildren().length);
-    }
-}

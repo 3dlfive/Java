@@ -7,21 +7,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class PetTest {
 
     @Test
-    void eat() {
-    }
-
-    @Test
-    void respond() {
-    }
-
-    @Test
-    void foul() {
-//        Pet p1 = new Pet();
-//        System.out.println("Потрібно добре замести сліди...");
-//        assertEquals("Потрібно добре замести сліди...",p1.foul().toString());
-    }
-
-    @Test
-    void getHabits() {
+   void testToString(){
+        Pet pet = new Pet(Species.CAT,"Snejok",1,51,new String[]{"eat carrot","sleep"});
+        String petToStringString = pet.toString();
+        String equString = "кіт{nickname='Snejok', age=1, trickLevel=51, habits=[[eat carrot, sleep]] \nВміє літати? false\nМає вовну? true\nКількість лап 4";
+        assertEquals(equString,petToStringString);
     }
 }

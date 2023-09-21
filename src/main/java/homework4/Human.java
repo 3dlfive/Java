@@ -10,23 +10,23 @@ public class Human {
     private int iq; // 0-100
     private homework4.Pet pet ; // Object Pet
     private homework4.Family family;
-    static {
-        System.out.println("New class Human loaded");
-        }
-    {
-        System.out.println("New Human object created.");
-    }
+//    static {
+//        System.out.println("New class Human loaded");
+//        }
+//    {
+//        System.out.println("New Human object created.");
+//    }
 
     private String[][] schedule ;
     Human(){
-        this("UnknownName","UnknownSurname",1991,new homework4.Pet(),null,new String[][] {{"Sun","Mon","Tue","Wed","Thur","Fri","Sat"},{"t1","t2","t3","t4","t5","t5","t5"}});
+        this("UnknownName","UnknownSurname",1991,new homework4.Pet(),null,new String[][] {{DayOfWeek.SUNDAY.name(),DayOfWeek.MONDAY.name(),DayOfWeek.THURSDAY.name(),DayOfWeek.WEDNESDAY.name(),DayOfWeek.TUESDAY.name(),DayOfWeek.FRIDAY.name(),DayOfWeek.SATURDAY.name()},{"t1","t2","t3","t4","t5","t5","t5"}});
     }
     Human(String nameArg, String surnameArg, int yearArg, homework4.Family family){
-        this( nameArg,surnameArg,yearArg,new homework4.Pet(), family,new String[][] {{"Sun","Mon","Tue","Wed","Thur","Fri","Sat"},{"t1","t2","t3","t4","t5","t5","t5"}});
+        this( nameArg,surnameArg,yearArg,new homework4.Pet(), family,new String[][] {{DayOfWeek.SUNDAY.name(),DayOfWeek.MONDAY.name(),DayOfWeek.THURSDAY.name(),DayOfWeek.WEDNESDAY.name(),DayOfWeek.TUESDAY.name(),DayOfWeek.FRIDAY.name(),DayOfWeek.SATURDAY.name()},{"t1","t2","t3","t4","t5","t5","t5"}});
 
     }
     public Human(String nameArg, String surnameArg, int yearArg){
-        this(nameArg,surnameArg,yearArg,new homework4.Pet(),null, new String[][] {{"Sun","Mon","Tue","Wed","Thur","Fri","Sat"},{"t1","t2","t3","t4","t5","t5","t5"}});
+        this(nameArg,surnameArg,yearArg,new homework4.Pet(),null, new String[][] {{DayOfWeek.SUNDAY.name(),DayOfWeek.MONDAY.name(),DayOfWeek.THURSDAY.name(),DayOfWeek.WEDNESDAY.name(),DayOfWeek.TUESDAY.name(),DayOfWeek.FRIDAY.name(),DayOfWeek.SATURDAY.name()},{"t1","t2","t3","t4","t5","t5","t5"}});
 
     }
 
@@ -42,7 +42,7 @@ public class Human {
         System.out.printf("Привіт, %s \n",pet.getNickname());
     }
     public void describePet(){
-        System.out.printf("У мене є %s, їй %s років, він %s \n",pet.getSpecies(),pet.getAge(),pet.getTrickLevel()>50?"дуже хитрий":"майже не хитрий");
+        System.out.printf("У мене є %s, їй %s років, він %s \n",pet.getSpecies().getTranslation(),pet.getAge(),pet.getTrickLevel()>50?"дуже хитрий":"майже не хитрий");
     }
     public boolean feedPet(boolean bool){
         int r = (int)(Math.random()*100);
@@ -150,7 +150,10 @@ public class Human {
         Human human = (Human) o;
         return getYear() == human.getYear() && Objects.equals(getName(), human.getName()) && Objects.equals(getSurname(), human.getSurname());
     }
-
+    @Override
+    public void finalize(){
+        System.out.println("Обєкт прибраний" +this.toString());
+    }
     @Override
     public int hashCode() {
         return Objects.hash(getName(), getSurname(), getYear());

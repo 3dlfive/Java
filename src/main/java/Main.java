@@ -1,6 +1,7 @@
 import homework4.Family;
 import homework4.Human;
 import homework4.Pet;
+import homework4.Species;
 
 import java.util.Arrays;
 
@@ -18,7 +19,7 @@ public class Main {
         System.out.println(f2.getFather());
         System.out.println(Arrays.toString(f2.getChildren()));
         System.out.println(f2.getPet());
-        Family f3 = Family.builder().withMother(new Human("Yana","Hujen",1992)).withFather(new Human("Den","Topik",1992)).withChildren(new Human[]{new Human("Diana","Dovbik",2012)}).withPet(new Pet("dog","Kiten",6,12,new String[]{"bark","walk"}))
+        Family f3 = Family.builder().withMother(new Human("Yana","Hujen",1992)).withFather(new Human("Den","Topik",1992)).withChildren(new Human[]{new Human("Diana","Dovbik",2012)}).withPet(new Pet(Species.RACOON,"Kiten",6,12,new String[]{"bark","walk"}))
                 .build();
         System.out.println("Mother ===="+ f3.getMother());
         System.out.println("Father ===="+ f3.getFather());
@@ -29,7 +30,7 @@ public class Main {
         Human mother = new Human("Olesa","Krepkiy",1921);
         Human father = new Human("Olegka","Krepkiy",1990);
         Human childen = new Human("Alex","Krepkiy",2012);
-        Pet pet = new Pet("rabbit","Snejok",1,51,new String[]{"eat carrot","sleep"});
+        Pet pet = new Pet(Species.CAT,"Snejok",1,51,new String[]{"eat carrot","sleep"});
         Family f4 = Family.builder().withMother(mother).withFather(father).withChildren(new Human[]{childen}).withPet(pet).build();
         System.out.println("Family N4 =="+f4.toString());
         mother.setFamily(f4);
@@ -52,6 +53,7 @@ public class Main {
         pet.respond();
         pet.eat();
         pet.foul();
+        f4.deleteChild(new Human("Alex","Krepkiy",2012));
 
     }
 }

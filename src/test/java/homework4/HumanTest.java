@@ -7,30 +7,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class HumanTest {
 
     @Test
-    void greetPet() {
+    void deleteChild() {
     }
 
-    @Test
-    void describePet() {
-    }
 
-    @Test
-    void getPet() {
-    }
-
-    @Test
-    void getFamily() {
-    }
-
-    @Test
-    void setSchedule() {
-    }
-
-    @Test
-    void getScheduleNormolized() {
-    }
-
-    @Test
-    void getSchedule() {
-    }
 }
