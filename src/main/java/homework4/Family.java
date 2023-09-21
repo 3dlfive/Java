@@ -8,12 +8,12 @@ public class Family {
     private Human father;
     private Human[] children;
     private Pet pet;
-    static {
-        System.out.println("New class Family loaded");
-    }
-    {
-        System.out.println("New Family object created.");
-    }
+//    static {
+//        System.out.println("New class Family loaded");
+//    }
+//    {
+//        System.out.println("New Family object created.");
+//    }
 
     protected Family(Human mother,Human father,Human[] children,Pet pet){
         this.mother=mother;
@@ -45,9 +45,9 @@ public class Family {
 
 
     public void addChild(Human child){
-
-        child.setFamily(Family.builder().withMother(new Human(this.getMother().getName(),this.getMother().getSurname() ,1998)).withFather(new Human(this.getFather().getName(),this.getFather().getSurname(), 1992))
-                .build());
+        System.out.println(this);
+//        child.setFamily(Family.builder().withMother(new Human(this.getMother().getName(),this.getMother().getSurname() ,1998)).withFather(new Human(this.getFather().getName(),this.getFather().getSurname(), 1992))
+//                .build());
         Human[] childrenTempArr ;
         childrenTempArr =Arrays.copyOf(children,children.length+1);
         childrenTempArr[childrenTempArr.length-1]= child;

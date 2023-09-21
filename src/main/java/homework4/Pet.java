@@ -11,12 +11,12 @@ public class Pet {
     private int age;
     private int trickLevel; //0-100
     private String[] habits;
-    static {
-        System.out.println("New Pet Family loaded");
-    }
-    {
-        System.out.println("New Pet object created.");
-    }
+//    static {
+//        System.out.println("New Pet Family loaded");
+//    }
+//    {
+//        System.out.println("New Pet object created.");
+//    }
     Pet(Species species2,String nickname2){
         this(species2,nickname2,0,0,new String[]{"play on street","sleep a lot"});
     }

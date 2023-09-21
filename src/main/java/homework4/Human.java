@@ -10,12 +10,12 @@ public class Human {
     private int iq; // 0-100
     private homework4.Pet pet ; // Object Pet
     private homework4.Family family;
-    static {
-        System.out.println("New class Human loaded");
-        }
-    {
-        System.out.println("New Human object created.");
-    }
+//    static {
+//        System.out.println("New class Human loaded");
+//        }
+//    {
+//        System.out.println("New Human object created.");
+//    }
 
     private String[][] schedule ;
     Human(){
