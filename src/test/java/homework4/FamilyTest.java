@@ -17,7 +17,7 @@ class FamilyTest {
     void setup(){
         f1 = Family.builder().withMother(new Human("Oksana","Pertovna",1991)).withFather(new Human("Oleg","Kopchik",1992))
                 .build();
-        f3 = Family.builder().withMother(new Human("Yana","Hujen",1992)).withFather(new Human("Den","Topik",1992)).withChildren(new Human[]{new Human("Diana","Dovbik",2012)}).withPet(new Pet(Species.RACOON,"Kiten",6,12,new String[]{"bark","walk"}))
+        f3 = Family.builder().withMother(new Human("Yana","Hujen",1992)).withFather(new Human("Den","Topik",1992)).withChildren(new Human[]{new Human("Diana","Dovbik",2012)}).withPet(new DomesticCat(Species.RACOON,"Kiten",6,12,new String[]{"bark","walk"}))
                 .build();
         newChild = new Human("Alex","Deev",1992,f3);
         newChild2 = new Human("Katerina","Bugrova",1992,f3);
@@ -72,7 +72,7 @@ class FamilyTest {
             "0,true"
     })
     void deleteChild(int index,boolean expectedResult) {
-        Family fam1 = Family.builder().withMother(new Human("Yana","Hujen",1992)).withFather(new Human("Den","Topik",1992)).withChildren(new Human[]{new Human("Diana","Dovbik",2012)}).withPet(new Pet(Species.RACOON,"Kiten",6,12,new String[]{"bark","walk"}))
+        Family fam1 = Family.builder().withMother(new Human("Yana","Hujen",1992)).withFather(new Human("Den","Topik",1992)).withChildren(new Human[]{new Human("Diana","Dovbik",2012)}).withPet(new Fish(Species.FISH,"Kiten",6,12,new String[]{"bark","walk"}))
                 .build();
         fam1.addChild(newChild);
         fam1.addChild(newChild2);
@@ -83,7 +83,7 @@ class FamilyTest {
     @Test
     @DisplayName("Check if Child remove by Human")
     void deleteChildbyHuman() {
-        Family fam1 = Family.builder().withMother(new Human("Yana","Hujen",1992)).withFather(new Human("Den","Topik",1992)).withChildren(new Human[]{new Human("Diana","Dovbik",2012)}).withPet(new Pet(Species.RACOON,"Kiten",6,12,new String[]{"bark","walk"}))
+        Family fam1 = Family.builder().withMother(new Human("Yana","Hujen",1992)).withFather(new Human("Den","Topik",1992)).withChildren(new Human[]{new Human("Diana","Dovbik",2012)}).withPet(new RoboCat(Species.RACOON,"Kiten",6,12,new String[]{"bark","walk"}))
                 .build();
         fam1.addChild(newChild);
         fam1.addChild(newChild2);
@@ -98,7 +98,7 @@ class FamilyTest {
     @Test
     @DisplayName(value = "Check Remove child not in list.")
     void deleteChildbyHumanAndCheckIfitnotFromArray() {
-        Family fam1 = Family.builder().withMother(new Human("Yana","Hujen",1992)).withFather(new Human("Den","Topik",1992)).withChildren(new Human[]{new Human("Diana","Dovbik",2012)}).withPet(new Pet(Species.RACOON,"Kiten",6,12,new String[]{"bark","walk"}))
+        Family fam1 = Family.builder().withMother(new Human("Yana","Hujen",1992)).withFather(new Human("Den","Topik",1992)).withChildren(new Human[]{new Human("Diana","Dovbik",2012)}).withPet(new Dog(Species.DOG,"Kiten",6,12,new String[]{"bark","walk"}))
                 .build();
         Human chTest = new Human("DianaZ","Dovbik",2012);
         boolean isDeleated = fam1.deleteChild(chTest);
@@ -113,7 +113,7 @@ class FamilyTest {
     @DisplayName("масив children залишається без змін (якщо передати індекс, що виходить за діапазон індексів), та метод повертає правильне значення")
     void childrenNotChangedAfterInvalidIndex() {
 
-        Family fam1 = Family.builder().withMother(new Human("Yana","Hujen",1992)).withFather(new Human("Den","Topik",1992)).withChildren(new Human[]{new Human("Diana","Dovbik",2012)}).withPet(new Pet(Species.RACOON,"Kiten",6,12,new String[]{"bark","walk"}))
+        Family fam1 = Family.builder().withMother(new Human("Yana","Hujen",1992)).withFather(new Human("Den","Topik",1992)).withChildren(new Human[]{new Human("Diana","Dovbik",2012)}).withPet(new Dog(Species.DOG,"Kiten",6,12,new String[]{"bark","walk"}))
                 .build();
         fam1.addChild(newChild);
         fam1.addChild(newChild2);

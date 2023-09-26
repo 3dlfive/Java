@@ -12,7 +12,7 @@ class petClassTest {
     @Test
     @DisplayName("Dog Names")
     void getPetName() {
-        Pet pet1 = new Pet(Species.DOG,"Sharick",5,45, new String[]{"eat","sleep"});
+        Pet pet1 = new Dog(Species.DOG,"Sharick",5,45, new String[]{"eat","sleep"});
         String petName=pet1.getNickname();
         assertEquals("Sharick",petName);
     }
@@ -25,7 +25,7 @@ class petClassTest {
             "Fifi,Fifi"
     })
     void getPetName2(String name,String expectedResult) {
-        Pet pet1 = new Pet(Species.DOG,name,5,45, new String[]{"eat","sleep"});
+        Pet pet1 = new Dog(Species.DOG,name,5,45, new String[]{"eat","sleep"});
         String petName=pet1.getNickname();
         assertEquals(petName,expectedResult);
     }

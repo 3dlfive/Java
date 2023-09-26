@@ -4,7 +4,7 @@ package homework4;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class Pet {
+public abstract class Pet {
 
     private String nickname;
     private Species species;

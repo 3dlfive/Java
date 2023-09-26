@@ -2,9 +2,12 @@ package homework4;
 
 public enum Species {
     DOG("пес",false,4,true),
+    UNKNOWN("Невідомий",false,2,false),
     CAT("кіт",false,4,true),
     FISH("рибка",false,0,false),
     BIRD("птах",true,2,false),
+    ROBOCAT("робокіт",false,4,true),
+    DOMESTICCAT("домашній кіт",false,4,true),
     RACOON("энот",false,4,true);
     private String translation;
     private boolean canFly;

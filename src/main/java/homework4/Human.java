@@ -19,14 +19,14 @@ public class Human {
 
     private String[][] schedule ;
     Human(){
-        this("UnknownName","UnknownSurname",1991,new homework4.Pet(),null,new String[][] {{DayOfWeek.SUNDAY.name(),DayOfWeek.MONDAY.name(),DayOfWeek.THURSDAY.name(),DayOfWeek.WEDNESDAY.name(),DayOfWeek.TUESDAY.name(),DayOfWeek.FRIDAY.name(),DayOfWeek.SATURDAY.name()},{"t1","t2","t3","t4","t5","t5","t5"}});
+        this("UnknownName","UnknownSurname",1991,new homework4.Dog(),null,new String[][] {{DayOfWeek.SUNDAY.name(),DayOfWeek.MONDAY.name(),DayOfWeek.THURSDAY.name(),DayOfWeek.WEDNESDAY.name(),DayOfWeek.TUESDAY.name(),DayOfWeek.FRIDAY.name(),DayOfWeek.SATURDAY.name()},{"t1","t2","t3","t4","t5","t5","t5"}});
     }
     public Human(String nameArg, String surnameArg, int yearArg, homework4.Family family){
-        this( nameArg,surnameArg,yearArg,new homework4.Pet(), family,new String[][] {{DayOfWeek.SUNDAY.name(),DayOfWeek.MONDAY.name(),DayOfWeek.THURSDAY.name(),DayOfWeek.WEDNESDAY.name(),DayOfWeek.TUESDAY.name(),DayOfWeek.FRIDAY.name(),DayOfWeek.SATURDAY.name()},{"t1","t2","t3","t4","t5","t5","t5"}});
+        this( nameArg,surnameArg,yearArg,new homework4.Dog(), family,new String[][] {{DayOfWeek.SUNDAY.name(),DayOfWeek.MONDAY.name(),DayOfWeek.THURSDAY.name(),DayOfWeek.WEDNESDAY.name(),DayOfWeek.TUESDAY.name(),DayOfWeek.FRIDAY.name(),DayOfWeek.SATURDAY.name()},{"t1","t2","t3","t4","t5","t5","t5"}});
 
     }
     public Human(String nameArg, String surnameArg, int yearArg){
-        this(nameArg,surnameArg,yearArg,new homework4.Pet(),null, new String[][] {{DayOfWeek.SUNDAY.name(),DayOfWeek.MONDAY.name(),DayOfWeek.THURSDAY.name(),DayOfWeek.WEDNESDAY.name(),DayOfWeek.TUESDAY.name(),DayOfWeek.FRIDAY.name(),DayOfWeek.SATURDAY.name()},{"t1","t2","t3","t4","t5","t5","t5"}});
+        this(nameArg,surnameArg,yearArg,new homework4.Dog(),null, new String[][] {{DayOfWeek.SUNDAY.name(),DayOfWeek.MONDAY.name(),DayOfWeek.THURSDAY.name(),DayOfWeek.WEDNESDAY.name(),DayOfWeek.TUESDAY.name(),DayOfWeek.FRIDAY.name(),DayOfWeek.SATURDAY.name()},{"t1","t2","t3","t4","t5","t5","t5"}});
 
     }
 
