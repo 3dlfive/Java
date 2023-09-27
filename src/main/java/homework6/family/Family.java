@@ -1,4 +1,7 @@
-package homework6;
+package homework6.family;
+
+import homework6.human.Human;
+import homework6.pet.Pet;
 
 import java.util.Arrays;
 import java.util.Objects;

@@ -1,6 +1,6 @@
-package homework6;
+package homework6.pet;
 
-public class Fish extends Pet{
+public class Fish extends Pet {
     public Fish( String kiten, int i, int i1, String[] strings) {
         super(kiten,i,i1,strings);
         super.setSpecies(Species.FISH);

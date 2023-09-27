@@ -1,5 +1,7 @@
 package homework6;
 
+import homework6.pet.Dog;
+import homework6.pet.Pet;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.*;
 import org.junit.jupiter.params.provider.CsvSource;

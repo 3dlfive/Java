@@ -1,5 +1,6 @@
 package homework6;
 
+import homework6.pet.RoboCat;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

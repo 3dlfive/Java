@@ -1,6 +1,6 @@
-package homework6;
+package homework6.pet;
 
-public class RoboCat extends Pet implements startFoul{
+public class RoboCat extends Pet implements startFoul {
     public RoboCat(String snejok, int i, int i1, String[] strings) {
         super(snejok,i,i1,strings);
         super.setSpecies(Species.ROBOCAT);

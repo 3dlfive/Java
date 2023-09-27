@@ -1,6 +1,10 @@
-package homework6;
+package homework6.pet;
 
-public class DomesticCat extends  Pet implements startFoul{
+import homework6.pet.Pet;
+import homework6.pet.Species;
+import homework6.pet.startFoul;
+
+public class DomesticCat extends Pet implements startFoul {
     public DomesticCat(String kiten, int i, int i1, String[] strings) {
         super(kiten,i,i1,strings);
         super.setSpecies(Species.DOMESTICCAT);

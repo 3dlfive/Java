@@ -1,4 +1,4 @@
-package homework6;
+package homework6.pet;
 
 public enum Species {
     DOG("пес",false,4,true),

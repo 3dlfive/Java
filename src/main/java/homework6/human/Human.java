@@ -1,4 +1,8 @@
-package homework6;
+package homework6.human;
+
+import homework6.family.Family;
+import homework6.pet.Dog;
+import homework6.pet.Pet;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -8,8 +12,8 @@ public class Human {
     private String surname;
     private int year;
     private int iq; // 0-100
-    private homework6.Pet pet ; // Object Pet
-    private homework6.Family family;
+    private Pet pet ; // Object Pet
+    private Family family;
 //    static {
 //        System.out.println("New class Human loaded");
 //        }
@@ -19,18 +23,18 @@ public class Human {
 
     private String[][] schedule ;
     Human(){
-        this("UnknownName","UnknownSurname",1991,new homework6.Dog(),null,new String[][] {{DayOfWeek.SUNDAY.name(),DayOfWeek.MONDAY.name(),DayOfWeek.THURSDAY.name(),DayOfWeek.WEDNESDAY.name(),DayOfWeek.TUESDAY.name(),DayOfWeek.FRIDAY.name(),DayOfWeek.SATURDAY.name()},{"t1","t2","t3","t4","t5","t5","t5"}});
+        this("UnknownName","UnknownSurname",1991,new Dog(),null,new String[][] {{DayOfWeek.SUNDAY.name(),DayOfWeek.MONDAY.name(),DayOfWeek.THURSDAY.name(),DayOfWeek.WEDNESDAY.name(),DayOfWeek.TUESDAY.name(),DayOfWeek.FRIDAY.name(),DayOfWeek.SATURDAY.name()},{"t1","t2","t3","t4","t5","t5","t5"}});
     }
-    public Human(String nameArg, String surnameArg, int yearArg, homework6.Family family){
-        this( nameArg,surnameArg,yearArg,new homework6.Dog(), family,new String[][] {{DayOfWeek.SUNDAY.name(),DayOfWeek.MONDAY.name(),DayOfWeek.THURSDAY.name(),DayOfWeek.WEDNESDAY.name(),DayOfWeek.TUESDAY.name(),DayOfWeek.FRIDAY.name(),DayOfWeek.SATURDAY.name()},{"t1","t2","t3","t4","t5","t5","t5"}});
+    public Human(String nameArg, String surnameArg, int yearArg, Family family){
+        this( nameArg,surnameArg,yearArg,new Dog(), family,new String[][] {{DayOfWeek.SUNDAY.name(),DayOfWeek.MONDAY.name(),DayOfWeek.THURSDAY.name(),DayOfWeek.WEDNESDAY.name(),DayOfWeek.TUESDAY.name(),DayOfWeek.FRIDAY.name(),DayOfWeek.SATURDAY.name()},{"t1","t2","t3","t4","t5","t5","t5"}});
 
     }
     public Human(String nameArg, String surnameArg, int yearArg){
-        this(nameArg,surnameArg,yearArg,new homework6.Dog(),null, new String[][] {{DayOfWeek.SUNDAY.name(),DayOfWeek.MONDAY.name(),DayOfWeek.THURSDAY.name(),DayOfWeek.WEDNESDAY.name(),DayOfWeek.TUESDAY.name(),DayOfWeek.FRIDAY.name(),DayOfWeek.SATURDAY.name()},{"t1","t2","t3","t4","t5","t5","t5"}});
+        this(nameArg,surnameArg,yearArg,new Dog(),null, new String[][] {{DayOfWeek.SUNDAY.name(),DayOfWeek.MONDAY.name(),DayOfWeek.THURSDAY.name(),DayOfWeek.WEDNESDAY.name(),DayOfWeek.TUESDAY.name(),DayOfWeek.FRIDAY.name(),DayOfWeek.SATURDAY.name()},{"t1","t2","t3","t4","t5","t5","t5"}});
 
     }
 
-    Human(String nameArg, String surnameArg, int yearArg, homework6.Pet petArg, homework6.Family family, String[][] scheduleArg){
+    Human(String nameArg, String surnameArg, int yearArg, Pet petArg, Family family, String[][] scheduleArg){
         this.setName(nameArg);
         this.setSurname(surnameArg);
         this.setYear(yearArg);

@@ -1,5 +1,11 @@
 package homework6;
 
+import homework6.family.Family;
+import homework6.human.Human;
+import homework6.pet.Dog;
+import homework6.pet.DomesticCat;
+import homework6.pet.Fish;
+import homework6.pet.RoboCat;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;

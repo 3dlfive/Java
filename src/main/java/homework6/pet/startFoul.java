@@ -1,4 +1,4 @@
-package homework6;
+package homework6.pet;
 
 public interface startFoul {
      void foul();

@@ -1,4 +1,7 @@
-import homework6.*;
+import homework6.family.Family;
+import homework6.human.Human;
+import homework6.pet.Dog;
+import homework6.pet.DomesticCat;
 
 import java.util.Arrays;
 
