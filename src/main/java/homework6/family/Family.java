@@ -1,12 +1,15 @@
 package homework6.family;
 
 import homework6.human.Human;
+import homework6.human.Men;
+import homework6.human.Women;
 import homework6.pet.Pet;
 
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.Random;
 
-public class Family {
+public class Family implements HumanCreator {
     private Human mother;
     private Human father;
     private Human[] children;
@@ -55,6 +58,27 @@ public class Family {
         childrenTempArr[childrenTempArr.length-1]= child;
         this.children = childrenTempArr;
     }
+    //    Реализуйте интерфейс HumanCreatorв одном из существующих классов проекта. Реализация должна возвращать новый объект Man или Woman, с установленными ссылками на текущую семью, фамилией отца, случайным именем (требуется заранее создать список имен) и средним IQ (от отца и матери). Пол ребенка определяется случайно с вероятностью 50х50.
+    public Human bornChild(){
+        String[] childNamesMen = new String[]{"Denys","Anton","Oleg","Alex"};
+        String[] childNamesWomen = new String[]{"Alla","Aura","Gabriella","Gigi"};
+        Random random = new Random();
+        int randomNumber = random.nextInt(2);
+        int randomChildrenName = random.nextInt(childNamesMen.length);
+        int childIq = (this.getMother().getIq()+this.getFather().getIq())/2;
+        if(randomNumber==0){
+            Women childGirl = new Women(childNamesWomen[randomChildrenName],this.getFather().getSurname(),1991,childIq,this);
+            this.addChild(childGirl);
+            return childGirl;
+        }else{
+            Men childBoy = new Men(childNamesMen[randomChildrenName],this.getFather().getSurname(),1991,childIq,this);
+            this.addChild(childBoy);
+            return childBoy;
+        }
+
+
+    }
+
     public boolean deleteChild(Human child){
         boolean ifIteminList = false;
         int indexOfchildtoDelete = 0;
@@ -126,10 +150,7 @@ public class Family {
     public int hashCode() {
         return Objects.hash(getMother(), getFather());
     }
-    @Override
-    public void finalize(){
-        System.out.println("Обєкт прибраний" +this.toString());
-    }
+
     public static class FamilyBuilder {
         private Human mother;
         private Human father;

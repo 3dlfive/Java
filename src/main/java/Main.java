@@ -1,5 +1,7 @@
 import homework6.family.Family;
 import homework6.human.Human;
+import homework6.human.Men;
+import homework6.human.Women;
 import homework6.pet.Dog;
 import homework6.pet.DomesticCat;
 
@@ -28,7 +30,7 @@ public class Main {
 
 
         Human mother = new Human("Olesa","Krepkiy",1921);
-        Human father = new Human("Olegka","Krepkiy",1990);
+        Human father = new Human("Olegka","Krepkiy",1990,20);
         Human childen = new Human("Alex","Krepkiy",2012);
         DomesticCat pet = new DomesticCat("Snejok",1,51,new String[]{"eat carrot","sleep"});
         Family f4 = Family.builder().withMother(mother).withFather(father).withChildren(new Human[]{childen}).withPet(pet).build();
@@ -53,7 +55,7 @@ public class Main {
         pet.respond();
         pet.eat();
         pet.foul();
-        f4.deleteChild(new Human("Alex","Krepkiy",2012));
+//        f4.deleteChild(new Human("Alex","Krepkiy",2012));
         /*
         Loop that full memory and fire method finalize();
         int counter = 0;
@@ -62,6 +64,11 @@ public class Main {
             new Human("Den","Secretovskiy",1991, Family.builder().withFather(new Human("Anto","Kirov",1992)).withMother(new Human("Oksana","Danivna",2001)).build());
             counter++;
         } while (!(counter ==10000000)); */
-
+        Human test = f4.bornChild();
+        System.out.print("Boy: ");
+        System.out.println(test instanceof Men);
+        System.out.print("Girl: ");
+        System.out.println(test instanceof Women);
+        System.out.println(Arrays.toString(f4.getChildren()));
     }
 }
