@@ -15,7 +15,7 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class FamilyTest {
+public class FamilyTest {
     Family f1 ;
     Family f3 ;
     Human newChild;
