@@ -42,26 +42,35 @@ public class Human {
         this.setSchedule(scheduleArg);
     }
     Human(){
-        this("UnknownName","UnknownSurname",1991,0,new Dog(),null,new  HashMap<>());
+        this("UnknownName","UnknownSurname",1991,0,new Dog(),null,setDefaultSchedule());
     }
     public Human(String nameArg, String surnameArg, int yearArg,  Family family){
-        this( nameArg,surnameArg,yearArg,1,new Dog(), family,new  HashMap<>());
+        this( nameArg,surnameArg,yearArg,1,new Dog(), family,setDefaultSchedule());
 
     }
     public Human(String nameArg, String surnameArg, int yearArg,int iqA, Family family){
-        this( nameArg,surnameArg,yearArg,iqA,new Dog(), family,new  HashMap<>());
+        this( nameArg,surnameArg,yearArg,iqA,new Dog(), family,setDefaultSchedule());
 
     }
     public Human(String nameArg, String surnameArg, int yearArg){
-        this(nameArg,surnameArg,yearArg,1,new Dog(),null, new  HashMap<>());
+        this(nameArg,surnameArg,yearArg,1,new Dog(),null, setDefaultSchedule());
 
     }
     public Human(String nameArg, String surnameArg, int yearArg,int iqA){
-        this(nameArg,surnameArg,yearArg,iqA,new Dog(),null, new  HashMap<>());
+        this(nameArg,surnameArg,yearArg,iqA,new Dog(),null, setDefaultSchedule());
 
     }
     public void setSchedule(HashMap<DayOfWeek,String> arr) {
         this.schedule = new HashMap<>(arr);
+
+
+    }
+    public static HashMap<DayOfWeek,String> setDefaultSchedule() {
+        HashMap<DayOfWeek,String> schedule2 =new  HashMap<>();
+        for (DayOfWeek day : DayOfWeek.values()) {
+            schedule2.put(day,"No entry.");
+        }
+        return schedule2;
 
 
     }
