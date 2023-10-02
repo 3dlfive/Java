@@ -13,19 +13,19 @@ public class Main {
                 .build();
         System.out.println(f1.getMother());
         System.out.println(f1.getFather());
-        System.out.println(Arrays.toString(f1.getChildren()));
+        System.out.println(f1.getChildren());
         System.out.println(f1.getPet());
         Family f2 = Family.builder().withMother(new Human("Yana","Hujen",1992)).withFather(new Human("Den","Topik",1992)).withChildren(new Human[]{new Human("Diana","Dovbik",2012)})
                 .build();
         System.out.println(f2.getMother());
         System.out.println(f2.getFather());
-        System.out.println(Arrays.toString(f2.getChildren()));
+        System.out.println(f2.getChildren());
         System.out.println(f2.getPet());
         Family f3 = Family.builder().withMother(new Human("Yana","Hujen",1992)).withFather(new Human("Den","Topik",1992)).withChildren(new Human[]{new Human("Diana","Dovbik",2012)}).withPet(new Dog("Kiten",6,12,new String[]{"bark","walk"}))
                 .build();
         System.out.println("Mother ===="+ f3.getMother());
         System.out.println("Father ===="+ f3.getFather());
-        System.out.println("Children ===="+ Arrays.toString(f3.getChildren()));
+        System.out.println("Children ===="+ f2.getChildren());
         System.out.println("Pet ===="+f3.getPet());
 
 
@@ -69,6 +69,6 @@ public class Main {
         System.out.println(test instanceof Men);
         System.out.print("Girl: ");
         System.out.println(test instanceof Women);
-        System.out.println(Arrays.toString(f4.getChildren()));
+        System.out.println(f4.getChildren());
     }
 }

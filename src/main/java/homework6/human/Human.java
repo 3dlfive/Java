@@ -6,6 +6,7 @@ import homework6.pet.Pet;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Objects;
 
 public class Human {
@@ -15,7 +16,7 @@ public class Human {
     private int iq; // 0-100
     private Pet pet ; // Object Pet
     private Family family;
-    private HashMap<DayOfWeek,String> schedule =new  HashMap<>();
+    private LinkedHashMap<DayOfWeek,String> schedule =new  LinkedHashMap<>();
 
     static {
         System.out.println("New class Human loaded");
@@ -32,7 +33,7 @@ public class Human {
 
 //    private String[][] schedule ;
 
-    Human(String nameArg, String surnameArg, int yearArg, int iqArg,Pet petArg, Family family, HashMap<DayOfWeek,String> scheduleArg){
+    Human(String nameArg, String surnameArg, int yearArg, int iqArg,Pet petArg, Family family, LinkedHashMap<DayOfWeek,String> scheduleArg){
         this.setName(nameArg);
         this.setSurname(surnameArg);
         this.setYear(yearArg);
@@ -60,13 +61,13 @@ public class Human {
         this(nameArg,surnameArg,yearArg,iqA,new Dog(),null, setDefaultSchedule());
 
     }
-    public void setSchedule(HashMap<DayOfWeek,String> arr) {
-        this.schedule = new HashMap<>(arr);
+    public void setSchedule(LinkedHashMap<DayOfWeek,String> arr) {
+        this.schedule = new LinkedHashMap<>(arr);
 
 
     }
-    public static HashMap<DayOfWeek,String> setDefaultSchedule() {
-        HashMap<DayOfWeek,String> schedule2 =new  HashMap<>();
+    public static LinkedHashMap<DayOfWeek,String> setDefaultSchedule() {
+        LinkedHashMap<DayOfWeek,String> schedule2 =new  LinkedHashMap<>();
         for (DayOfWeek day : DayOfWeek.values()) {
             schedule2.put(day,"No entry.");
         }

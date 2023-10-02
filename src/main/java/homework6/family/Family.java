@@ -5,14 +5,13 @@ import homework6.human.Men;
 import homework6.human.Women;
 import homework6.pet.Pet;
 
-import java.util.Arrays;
-import java.util.Objects;
-import java.util.Random;
+import java.util.*;
 
 public class Family implements HumanCreator {
     private Human mother;
     private Human father;
-    private Human[] children;
+//    private Human[] children;
+    private ArrayList<Human> children = new ArrayList<>();
     private Pet pet;
 //    static {
 //        System.out.println("New class Family loaded");
@@ -21,10 +20,10 @@ public class Family implements HumanCreator {
 //        System.out.println("New Family object created.");
 //    }
 
-    protected Family(Human mother,Human father,Human[] children,Pet pet){
+    protected Family(Human mother,Human father,ArrayList<Human> childrens,Pet pet){
         this.mother=mother;
         this.father=father;
-        this.children=children;
+        this.children.addAll(childrens);
         this.pet=pet;
     }
     public Human getMother() {
@@ -35,12 +34,12 @@ public class Family implements HumanCreator {
         return father;
     }
 
-    public Human[] getChildren() {
+    public ArrayList<Human> getChildren() {
 
         return children;
     }
     public int countFamily(){
-        return 2+ children.length;
+        return 2+ children.size();
     }
     public Pet getPet() {
         return pet;
@@ -52,11 +51,8 @@ public class Family implements HumanCreator {
 
     public void addChild(Human child){
 //        System.out.println("------THIS"+this);
-        child.setFamily(this);
-        Human[] childrenTempArr ;
-        childrenTempArr =Arrays.copyOf(children,children.length+1);
-        childrenTempArr[childrenTempArr.length-1]= child;
-        this.children = childrenTempArr;
+
+        this.children.add(child);
     }
     //    Реализуйте интерфейс HumanCreatorв одном из существующих классов проекта. Реализация должна возвращать новый объект Man или Woman, с установленными ссылками на текущую семью, фамилией отца, случайным именем (требуется заранее создать список имен) и средним IQ (от отца и матери). Пол ребенка определяется случайно с вероятностью 50х50.
     public Human bornChild(){
@@ -79,35 +75,14 @@ public class Family implements HumanCreator {
 
     }
 
-    public boolean deleteChild(Human child){
-        boolean ifIteminList = false;
-        int indexOfchildtoDelete = 0;
-        for (int i=0;i<children.length;i++)
-            if (children[i].equals(child)) {
-                ifIteminList=true;
-                indexOfchildtoDelete = i;
-            }
-
-        if (ifIteminList) this.deleteChild(indexOfchildtoDelete);
-        return ifIteminList;
+    public boolean deleteChild(Human child) {
+        return children.remove(child);
     }
     public boolean deleteChild(int indexOfChild){
-        if ((indexOfChild>=0 && indexOfChild<=this.children.length)){
-            Human[] childArr1=new Human[this.children.length-1];
-            for(int index=0;index<this.children.length-1;index++){
-                if (index >= indexOfChild ){
-                    childArr1[index]=this.children[index+1];
-                } else {
-                    childArr1[index]=this.children[index];
-                }
-            }
-            this.children=childArr1;
-//            System.out.println(Arrays.toString(childArr1));
-//            if(this.children.length>=3){
-//                Human[] childArr1 = Arrays.copyOfRange(children,0,indexOfChild-1);
-//                Human[] childArr2 = Arrays.copyOfRange(children,indexOfChild+1,children.length);
-//                this.children=concatTwoArray(childArr1,childArr2);
-//            }
+        if ((indexOfChild>=0 && indexOfChild<=this.children.size())){
+
+            this.children.remove(indexOfChild);
+
 
             return true;
         } else {
@@ -133,10 +108,14 @@ public class Family implements HumanCreator {
         return "Family{" +
                 "mother=" + mother +
                 ", father=" + father +
-                ", children=" + Arrays.toString(children) +
+                ", children=" + children +
                 ", pet=" + pet +
                 '}';
     }
+
+
+
+
 
     @Override
     public boolean equals(Object o) {
@@ -154,7 +133,7 @@ public class Family implements HumanCreator {
     public static class FamilyBuilder {
         private Human mother;
         private Human father;
-        private Human[] children = new Human[]{};
+        private ArrayList<Human> children = new ArrayList<>();
 
         private Pet pet;
         public FamilyBuilder withMother(Human mother){
@@ -167,7 +146,7 @@ public class Family implements HumanCreator {
             return this;
         }
         public FamilyBuilder withChildren(Human[] children){
-            this.children=children;
+            this.children.addAll(Arrays.asList(children));
             return this;
 
         }
