@@ -108,7 +108,8 @@ class FamilyTest {
                 .build();
         Human chTest = new Human("DianaZ","Dovbik",2012);
         boolean isDeleated = fam1.deleteChild(chTest);
-        System.out.println(Arrays.toString(fam1.getChildren()));
+        System.out.println(isDeleated);
+//        System.out.println(Arrays.toString(fam1.getChildren()));
 
         boolean expectedResult=false;
 

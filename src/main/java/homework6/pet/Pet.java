@@ -1,8 +1,7 @@
 package homework6.pet;
 
 
-import java.util.Arrays;
-import java.util.Objects;
+import java.util.*;
 
 public abstract class Pet {
 
@@ -10,7 +9,7 @@ public abstract class Pet {
     private Species species = Species.UNKNOWN;
     private int age;
     private int trickLevel; //0-100
-    private String[] habits;
+    private Set<String> habits = new HashSet<String>();
 //    static {
 //        System.out.println("New Pet Family loaded");
 //    }
@@ -21,7 +20,7 @@ public abstract class Pet {
         this(nickname2,0,0,new String[]{"play on street","sleep a lot"});
     }
     Pet(){
-        this("unknownName",0,1,new String[]{});
+        this("unknownName",0,1,new String[]{"UNKNOWN"});
     }
     public Pet( String nickname, int age2, int trickLevel2, String[] habbits2){
 
@@ -37,7 +36,7 @@ public abstract class Pet {
     public abstract void respond();
     @Override
     public String toString(){
-        String myReturnString = String.format("%s{nickname='%s', age=%d, trickLevel=%d, habits=[%s] \nВміє літати? %s\nМає вовну? %s\nКількість лап %s",species.getTranslation(),nickname,age,trickLevel, Arrays.toString(habits),species.isCanFly(),species.isHasFur(),species.getNumberOfLegs());
+        String myReturnString = String.format("%s{nickname='%s', age=%d, trickLevel=%d, habits=[%s] \nВміє літати? %s\nМає вовну? %s\nКількість лап %s",species.getTranslation(),nickname,age,trickLevel, habits,species.isCanFly(),species.isHasFur(),species.getNumberOfLegs());
         System.out.println(myReturnString);
         return myReturnString;
     }
@@ -54,7 +53,7 @@ public abstract class Pet {
     }
 
     public void setHabits(String[] habits) {
-        this.habits = habits;
+        this.habits.addAll(Arrays.asList(habits));
     }
 
     public void setNickname(String nickname) {
@@ -86,7 +85,7 @@ public abstract class Pet {
         return trickLevel;
     }
 
-    public String[] getHabits() {
+    public Set<String> getHabits() {
         return habits;
     }
 
