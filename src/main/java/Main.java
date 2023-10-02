@@ -51,7 +51,7 @@ public class Main {
         System.out.println(childen.getFamily());
         childen.describePet();
         childen.greetPet();
-        childen.getScheduleNormolized();
+        childen.getSchedule();
         pet.respond();
         pet.eat();
         pet.foul();

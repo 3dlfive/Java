@@ -5,6 +5,7 @@ import homework6.pet.Dog;
 import homework6.pet.Pet;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Objects;
 
 public class Human {
@@ -14,34 +15,24 @@ public class Human {
     private int iq; // 0-100
     private Pet pet ; // Object Pet
     private Family family;
-//    static {
-//        System.out.println("New class Human loaded");
-//        }
-//    {
-//        System.out.println("New Human object created.");
-//    }
+    private HashMap<DayOfWeek,String> schedule =new  HashMap<>();
 
-    private String[][] schedule ;
-    Human(){
-        this("UnknownName","UnknownSurname",1991,0,new Dog(),null,new String[][] {{DayOfWeek.SUNDAY.name(),DayOfWeek.MONDAY.name(),DayOfWeek.THURSDAY.name(),DayOfWeek.WEDNESDAY.name(),DayOfWeek.TUESDAY.name(),DayOfWeek.FRIDAY.name(),DayOfWeek.SATURDAY.name()},{"t1","t2","t3","t4","t5","t5","t5"}});
-    }
-    public Human(String nameArg, String surnameArg, int yearArg,  Family family){
-        this( nameArg,surnameArg,yearArg,1,new Dog(), family,new String[][] {{DayOfWeek.SUNDAY.name(),DayOfWeek.MONDAY.name(),DayOfWeek.THURSDAY.name(),DayOfWeek.WEDNESDAY.name(),DayOfWeek.TUESDAY.name(),DayOfWeek.FRIDAY.name(),DayOfWeek.SATURDAY.name()},{"t1","t2","t3","t4","t5","t5","t5"}});
+    static {
+        System.out.println("New class Human loaded");
+        }
+     {
+        System.out.println("New Human object created.");
+        //Create empty scheduler
+         for (DayOfWeek day : DayOfWeek.values()) {
+             schedule.put(day,"No entry.");
+         }
 
-    }
-    public Human(String nameArg, String surnameArg, int yearArg,int iqA, Family family){
-        this( nameArg,surnameArg,yearArg,iqA,new Dog(), family,new String[][] {{DayOfWeek.SUNDAY.name(),DayOfWeek.MONDAY.name(),DayOfWeek.THURSDAY.name(),DayOfWeek.WEDNESDAY.name(),DayOfWeek.TUESDAY.name(),DayOfWeek.FRIDAY.name(),DayOfWeek.SATURDAY.name()},{"t1","t2","t3","t4","t5","t5","t5"}});
-
-    }
-    public Human(String nameArg, String surnameArg, int yearArg){
-        this(nameArg,surnameArg,yearArg,1,new Dog(),null, new String[][] {{DayOfWeek.SUNDAY.name(),DayOfWeek.MONDAY.name(),DayOfWeek.THURSDAY.name(),DayOfWeek.WEDNESDAY.name(),DayOfWeek.TUESDAY.name(),DayOfWeek.FRIDAY.name(),DayOfWeek.SATURDAY.name()},{"t1","t2","t3","t4","t5","t5","t5"}});
-
-    }    public Human(String nameArg, String surnameArg, int yearArg,int iqA){
-        this(nameArg,surnameArg,yearArg,iqA,new Dog(),null, new String[][] {{DayOfWeek.SUNDAY.name(),DayOfWeek.MONDAY.name(),DayOfWeek.THURSDAY.name(),DayOfWeek.WEDNESDAY.name(),DayOfWeek.TUESDAY.name(),DayOfWeek.FRIDAY.name(),DayOfWeek.SATURDAY.name()},{"t1","t2","t3","t4","t5","t5","t5"}});
 
     }
 
-    Human(String nameArg, String surnameArg, int yearArg, int iqArg,Pet petArg, Family family, String[][] scheduleArg){
+//    private String[][] schedule ;
+
+    Human(String nameArg, String surnameArg, int yearArg, int iqArg,Pet petArg, Family family, HashMap<DayOfWeek,String> scheduleArg){
         this.setName(nameArg);
         this.setSurname(surnameArg);
         this.setYear(yearArg);
@@ -50,6 +41,31 @@ public class Human {
         this.setFamily(family);
         this.setSchedule(scheduleArg);
     }
+    Human(){
+        this("UnknownName","UnknownSurname",1991,0,new Dog(),null,new  HashMap<>());
+    }
+    public Human(String nameArg, String surnameArg, int yearArg,  Family family){
+        this( nameArg,surnameArg,yearArg,1,new Dog(), family,new  HashMap<>());
+
+    }
+    public Human(String nameArg, String surnameArg, int yearArg,int iqA, Family family){
+        this( nameArg,surnameArg,yearArg,iqA,new Dog(), family,new  HashMap<>());
+
+    }
+    public Human(String nameArg, String surnameArg, int yearArg){
+        this(nameArg,surnameArg,yearArg,1,new Dog(),null, new  HashMap<>());
+
+    }
+    public Human(String nameArg, String surnameArg, int yearArg,int iqA){
+        this(nameArg,surnameArg,yearArg,iqA,new Dog(),null, new  HashMap<>());
+
+    }
+    public void setSchedule(HashMap<DayOfWeek,String> arr) {
+        this.schedule = new HashMap<>(arr);
+
+
+    }
+
     public void greetPet(){
         System.out.printf("Привіт, %s \n",pet.getNickname());
     }
@@ -128,20 +144,8 @@ public class Human {
 
 
 
-    public void setSchedule(String[][] schedule) {
-        this.schedule = schedule;
 
-    }
-    public String[] getScheduleNormolized() {
-        String[] normalizedArray = new String[schedule[0].length];
-
-        for (int cell=0;cell<normalizedArray.length;cell++){
-            normalizedArray[cell]="["+schedule[0][cell]+","+schedule[1][cell]+"]";
-        }
-
-        return normalizedArray;
-        }
-    public String[][] getSchedule() {
+    public HashMap<DayOfWeek, String> getSchedule() {
      return schedule;
     }
     @Override
@@ -151,7 +155,7 @@ public class Human {
                 ", surname='" + surname + '\'' +
                 ", year=" + year +
                 ", iq=" + iq +
-                ", schedule=" + Arrays.toString(getScheduleNormolized()) +
+                ", schedule=" + getSchedule() +
                 '}';
     }
 
