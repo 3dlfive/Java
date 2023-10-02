@@ -13,6 +13,7 @@ public class Family implements HumanCreator {
 //    private Human[] children;
     private ArrayList<Human> children = new ArrayList<>();
     private Pet pet;
+    private Set<Pet> pets = new HashSet<>();
 //    static {
 //        System.out.println("New class Family loaded");
 //    }
@@ -24,6 +25,7 @@ public class Family implements HumanCreator {
         this.mother=mother;
         this.father=father;
         this.children.addAll(childrens);
+        this.pets.add(pet);
         this.pet=pet;
     }
     public Human getMother() {
@@ -136,6 +138,7 @@ public class Family implements HumanCreator {
         private ArrayList<Human> children = new ArrayList<>();
 
         private Pet pet;
+        private Set<Pet> pets = new HashSet<>();
         public FamilyBuilder withMother(Human mother){
 //            mother.setFamily(this);//Не работает Как присвоить ту же семью
             this.mother=mother;
@@ -151,7 +154,7 @@ public class Family implements HumanCreator {
 
         }
         public FamilyBuilder withPet(Pet pet){
-            this.pet=pet;
+            this.pets.add(pet);
             return this;
         }
         public Family build(){
