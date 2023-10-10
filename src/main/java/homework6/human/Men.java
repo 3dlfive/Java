@@ -3,10 +3,10 @@ package homework6.human;
 import homework6.family.Family;
 
 public final class Men extends Human {
-    public Men(String name,String Lastname,int age){
+    public Men(String name,String Lastname,String age){
         super(name,Lastname,age);
     }
-    public Men(String name, String Lastname, int age, int iq, Family f2){
+    public Men(String name, String Lastname, String age, int iq, Family f2){
         super(name,Lastname,age,iq,f2);
     }
     @Override

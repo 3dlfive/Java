@@ -4,7 +4,14 @@ import homework6.family.Family;
 import homework6.pet.Dog;
 import homework6.pet.Pet;
 
-import java.util.Arrays;
+
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Period;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Objects;
@@ -12,7 +19,8 @@ import java.util.Objects;
 public class Human {
     private String name;
     private String surname;
-    private int year;
+    private long year;
+
     private int iq; // 0-100
     private Pet pet ; // Object Pet
     private Family family;
@@ -33,7 +41,7 @@ public class Human {
 
 //    private String[][] schedule ;
 
-    Human(String nameArg, String surnameArg, int yearArg, int iqArg,Pet petArg, Family family, LinkedHashMap<DayOfWeek,String> scheduleArg){
+    Human(String nameArg, String surnameArg, String yearArg, int iqArg,Pet petArg, Family family, LinkedHashMap<DayOfWeek,String> scheduleArg){
         this.setName(nameArg);
         this.setSurname(surnameArg);
         this.setYear(yearArg);
@@ -43,21 +51,21 @@ public class Human {
         this.setSchedule(scheduleArg);
     }
     Human(){
-        this("UnknownName","UnknownSurname",1991,0,new Dog(),null,setDefaultSchedule());
+        this("UnknownName","UnknownSurname","20/03/2016",0,new Dog(),null,setDefaultSchedule());
     }
-    public Human(String nameArg, String surnameArg, int yearArg,  Family family){
+    public Human(String nameArg, String surnameArg, String yearArg,  Family family){
         this( nameArg,surnameArg,yearArg,1,new Dog(), family,setDefaultSchedule());
 
     }
-    public Human(String nameArg, String surnameArg, int yearArg,int iqA, Family family){
+    public Human(String nameArg, String surnameArg, String yearArg,int iqA, Family family){
         this( nameArg,surnameArg,yearArg,iqA,new Dog(), family,setDefaultSchedule());
 
     }
-    public Human(String nameArg, String surnameArg, int yearArg){
+    public Human(String nameArg, String surnameArg, String yearArg){
         this(nameArg,surnameArg,yearArg,1,new Dog(),null, setDefaultSchedule());
 
     }
-    public Human(String nameArg, String surnameArg, int yearArg,int iqA){
+    public Human(String nameArg, String surnameArg, String yearArg,int iqA){
         this(nameArg,surnameArg,yearArg,iqA,new Dog(),null, setDefaultSchedule());
 
     }
@@ -116,12 +124,29 @@ public class Human {
         this.surname = surname;
     }
 
-    public int getYear() {
+    public long getYear() {
         return year;
     }
+    public String describeAge(){
 
-    public void setYear(int year) {
-        this.year = year;
+        LocalDate ln = LocalDate.now();
+        System.out.println(ln);
+        LocalDate ld = LocalDate.ofEpochDay(this.year);
+
+        System.out.println(ld);
+        Period period = Period.between(ld, ln);
+        String s = String.format("кількість років %s, місяців %s та днів життя людини %s",period.getYears(), period.getMonths(),period.getDays());
+
+        return s;
+    }
+
+    public void setYear(String year) {
+
+        LocalDate time = LocalDate.parse(year, DateTimeFormatter.ofPattern("dd/MM/yyyy"));;
+        ZoneId zoneId = ZoneId.systemDefault(); // or: ZoneId.of("Europe/Oslo");
+        long epoch = time.toEpochDay();
+//      //20/03/2016
+        this.year = epoch;
     }
 
     public int getIq() {

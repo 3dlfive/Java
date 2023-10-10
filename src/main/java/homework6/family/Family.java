@@ -65,11 +65,11 @@ public class Family implements HumanCreator {
         int randomChildrenName = random.nextInt(childNamesMen.length);
         int childIq = (this.getMother().getIq()+this.getFather().getIq())/2;
         if(randomNumber==0){
-            Women childGirl = new Women(childNamesWomen[randomChildrenName],this.getFather().getSurname(),1991,childIq,this);
+            Women childGirl = new Women(childNamesWomen[randomChildrenName],this.getFather().getSurname(),"20/03/2016",childIq,this);
             this.addChild(childGirl);
             return childGirl;
         }else{
-            Men childBoy = new Men(childNamesMen[randomChildrenName],this.getFather().getSurname(),1991,childIq,this);
+            Men childBoy = new Men(childNamesMen[randomChildrenName],this.getFather().getSurname(),"20/03/2016",childIq,this);
             this.addChild(childBoy);
             return childBoy;
         }

@@ -5,13 +5,13 @@ import homework6.family.Family;
 import java.util.Random;
 
 public final class Women extends Human  {
-    public Women(String name,String Lastname,int age){
+    public Women(String name,String Lastname,String age){
         super(name,Lastname,age);
     }
-    public Women(String name, String Lastname, int age, int iq, Family f2){
+    public Women(String name, String Lastname, String age, int iq, Family f2){
          super(name,Lastname,age,iq,f2);
     }
-    public Women(String name, String Lastname, int age, int iq){
+    public Women(String name, String Lastname, String age, int iq){
          super(name,Lastname,age,iq);
     }
     @Override
