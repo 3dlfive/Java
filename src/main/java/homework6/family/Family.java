@@ -43,8 +43,8 @@ public class Family implements HumanCreator {
     public int countFamily(){
         return 2+ children.size();
     }
-    public Pet getPet() {
-        return pet;
+    public Set<Pet> getPet() {
+        return pets;
     }
     public static FamilyBuilder builder(){
         return new FamilyBuilder();

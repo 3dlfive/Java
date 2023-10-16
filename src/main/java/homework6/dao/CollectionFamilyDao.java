@@ -8,8 +8,12 @@ import java.util.List;
 public class CollectionFamilyDao implements FamilyDao {
     ArrayList <Family> familyList = new ArrayList<>();;
 
+    public CollectionFamilyDao(ArrayList<Family> familyList) {
+        this.familyList = familyList;
+    }
+
     @Override
-    public List<Family> getAllFamilies() {
+    public ArrayList<Family> getAllFamilies() {
         return this.familyList;
     }
 
