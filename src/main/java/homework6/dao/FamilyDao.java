@@ -5,14 +5,16 @@ import homework6.human.Human;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-public interface FamilyDao {
-    List<Family> getAllFamilies();
-    Family getFamilyByIndex(int index);
-    Boolean deleteFamilyByIndex(int index);
-    Boolean deleteFamily(Family family);
-    Boolean saveFamily(Family family);
+public interface FamilyDao<T, ID> {
+    List<T> getAllFamilies();
 
+    Boolean deleteByIndex(int index);
+    Boolean deleteFamily(T family);
+    Boolean saveFamily(T family);
+
+    Optional<T> findById(ID id);
 
 
 }

@@ -6,10 +6,7 @@ import homework6.human.Men;
 import homework6.human.Women;
 import homework6.pet.Pet;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.stream.Collectors;
+import java.util.*;
 
 public class FamilyService {
 
@@ -71,7 +68,7 @@ return  family;
     };
 //
 public void deleteAllChildrenOlderThen(int age){
-    ArrayList<Family>  flist= familyDB.getAllFamilies();
+    List<Family>  flist= familyDB.getAllFamilies();
     ArrayList<Family> filtered = (ArrayList<Family>) flist.stream().filter(el-> el.getChildren().stream().filter(child->child.getYear()>=age).isParallel()).toList();
     this.familyDB = new CollectionFamilyDao(filtered);
 
@@ -79,15 +76,17 @@ public void deleteAllChildrenOlderThen(int age){
     public int count(){
         return familyDB.getAllFamilies().size();
     }
-   public  Family getFamilyById(int id){
-       return familyDB.getAllFamilies().get(id);
+   public Optional<Family> getById(int id){
+       Optional<Family> family = (Optional<Family>) familyDB.getAllFamilies().get(id);
+       return family;
    };
    public ArrayList getPets(int familyIndex){
-       return (ArrayList) familyDB.getAllFamilies().get(familyIndex).getPet();
+       Family f1 = (Family) familyDB.getAllFamilies().get(familyIndex);
+       Set<Pet> pl = f1.getPet();
+       return (ArrayList) pl;
    };
-   public Family addPet(int famIndex,Pet newpet){
-       Family foundFam = familyDB.getAllFamilies().get(famIndex);
-       foundFam.getPet().add(newpet);
+   public Optional<Family> addPet(int famIndex, Pet newpet){
+       Optional<Family> foundFam = this.getById(famIndex);
        familyDB.saveFamily(foundFam);
        return foundFam;
 

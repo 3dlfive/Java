@@ -4,42 +4,40 @@ import homework6.family.Family;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-public class CollectionFamilyDao implements FamilyDao {
-    ArrayList <Family> familyList = new ArrayList<>();;
+public class CollectionFamilyDao<F> implements FamilyDao {
+    ArrayList <F> familyList = new ArrayList<>();;
 
-    public CollectionFamilyDao(ArrayList<Family> familyList) {
+    public CollectionFamilyDao(ArrayList<F> familyList) {
         this.familyList = familyList;
     }
 
+
     @Override
-    public ArrayList<Family> getAllFamilies() {
-        return this.familyList;
+    public List<F> getAllFamilies() {
+        return familyList.stream().toList();
     }
 
     @Override
-    public Family getFamilyByIndex(int index) {
-        return this.getFamilyList().get(index);
+    public Boolean deleteByIndex(int index) {
+        int templength = familyList.size();
+        familyList.remove(index);
+        return templength != familyList.size();
     }
 
     @Override
-    public Boolean deleteFamilyByIndex(int index) {
-        int before = this.familyList.size();
-        this.familyList.remove(index);
-        return before != this.familyList.size();
+    public Boolean deleteFamily(Object family) {
+        return null;
     }
 
     @Override
-    public Boolean deleteFamily(Family family) {
-        return this.familyList.remove(family);
+    public Boolean saveFamily(Object family) {
+        return null;
     }
 
     @Override
-    public Boolean saveFamily(Family family) {
-        return this.familyList.add(family);
-    }
-
-    public List<Family> getFamilyList() {
-        return familyList;
+    public Optional<Family> findById(Object o) {
+        return Optional.empty();
     }
 }
