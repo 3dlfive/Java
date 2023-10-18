@@ -19,7 +19,7 @@ import java.util.Objects;
 public class Human {
     private String name;
     private String surname;
-    private long year;
+    private long birthDate;
 
     private int iq; // 0-100
     private Pet pet ; // Object Pet
@@ -133,13 +133,13 @@ public class Human {
     }
 
     public long getYear() {
-        return year;
+        return birthDate;
     }
     public String describeAge(){
 
         LocalDate ln = LocalDate.now();
         System.out.println(ln);
-        LocalDate ld = LocalDate.ofEpochDay(this.year);
+        LocalDate ld = LocalDate.ofEpochDay(this.birthDate);
 
         System.out.println(ld);
         Period period = Period.between(ld, ln);
@@ -154,7 +154,7 @@ public class Human {
         ZoneId zoneId = ZoneId.systemDefault(); // or: ZoneId.of("Europe/Oslo");
         long epoch = time.toEpochDay();
 //      //20/03/2016
-        this.year = epoch;
+        this.birthDate = epoch;
     }
 
     public int getIq() {
@@ -196,7 +196,7 @@ public class Human {
         return "Human{" +
                 "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", year=" + LocalDate.ofEpochDay(this.year).format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) +
+                ", year=" + LocalDate.ofEpochDay(this.birthDate).format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) +
                 ", iq=" + iq +
                 ", schedule=" + getSchedule() +
                 '}';
