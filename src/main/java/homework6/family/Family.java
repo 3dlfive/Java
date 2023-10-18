@@ -43,8 +43,8 @@ public class Family implements HumanCreator {
     public int countFamily(){
         return 2+ children.size();
     }
-    public Pet getPet() {
-        return pet;
+    public Set<Pet> getPet() {
+        return pets;
     }
     public static FamilyBuilder builder(){
         return new FamilyBuilder();
@@ -55,6 +55,7 @@ public class Family implements HumanCreator {
 //        System.out.println("------THIS"+this);
 
         this.children.add(child);
+
     }
     //    Реализуйте интерфейс HumanCreatorв одном из существующих классов проекта. Реализация должна возвращать новый объект Man или Woman, с установленными ссылками на текущую семью, фамилией отца, случайным именем (требуется заранее создать список имен) и средним IQ (от отца и матери). Пол ребенка определяется случайно с вероятностью 50х50.
     public Human bornChild(){
