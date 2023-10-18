@@ -196,7 +196,7 @@ public class Human {
         return "Human{" +
                 "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", year=" + LocalDate.ofEpochDay(this.year) +
+                ", year=" + LocalDate.ofEpochDay(this.year).format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) +
                 ", iq=" + iq +
                 ", schedule=" + getSchedule() +
                 '}';
