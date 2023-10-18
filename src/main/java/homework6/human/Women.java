@@ -11,6 +11,12 @@ public final class Women extends Human  {
     public Women(String name, String Lastname, String age, int iq, Family f2){
          super(name,Lastname,age,iq,f2);
     }
+    public Women(String name, String Lastname,  int iq, Family f2){
+         super(name,Lastname,iq,f2);
+    }
+    public Women(String name, String Lastname){
+         super(name,Lastname);
+    }
     public Women(String name, String Lastname, String age, int iq){
          super(name,Lastname,age,iq);
     }

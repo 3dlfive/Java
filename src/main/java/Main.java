@@ -1,3 +1,6 @@
+import homework6.dao.CollectionFamilyDao;
+import homework6.dao.FamilyController;
+import homework6.dao.FamilyService;
 import homework6.family.Family;
 import homework6.human.Human;
 import homework6.human.Men;
@@ -5,72 +8,59 @@ import homework6.human.Women;
 import homework6.pet.Dog;
 import homework6.pet.DomesticCat;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-//        Family f1 = Family.builder().withMother(new Human("Oksana","Pertovna",1991)).withFather(new Human("Oleg","Kopchik",1992))
-//                .build();
-//        System.out.println(f1.getMother());
-//        System.out.println(f1.getFather());
-//        System.out.println(f1.getChildren());
-//        System.out.println(f1.getPet());
-//        Family f2 = Family.builder().withMother(new Human("Yana","Hujen",1992)).withFather(new Human("Den","Topik",1992)).withChildren(new Human[]{new Human("Diana","Dovbik",2012)})
-//                .build();
-//        System.out.println(f2.getMother());
-//        System.out.println(f2.getFather());
-//        System.out.println(f2.getChildren());
-//        System.out.println(f2.getPet());
-//        Family f3 = Family.builder().withMother(new Human("Yana","Hujen",1992)).withFather(new Human("Den","Topik",1992)).withChildren(new Human[]{new Human("Diana","Dovbik",2012)}).withPet(new Dog("Kiten",6,12,new String[]{"bark","walk"}))
-//                .build();
-//        System.out.println("Mother ===="+ f3.getMother());
-//        System.out.println("Father ===="+ f3.getFather());
-//        System.out.println("Children ===="+ f2.getChildren());
-//        System.out.println("Pet ===="+f3.getPet());
-//
-//
-//        Human mother = new Human("Olesa","Krepkiy",1921);
-//        Human father = new Human("Olegka","Krepkiy",1990,20);
-//        Human childen = new Human("Alex","Krepkiy",2012);
-//        DomesticCat pet = new DomesticCat("Snejok",1,51,new String[]{"eat carrot","sleep"});
-//        Family f4 = Family.builder().withMother(mother).withFather(father).withChildren(new Human[]{childen}).withPet(pet).build();
-//        System.out.println("Family N4 =="+f4.toString());
-//        mother.setFamily(f4);
-//        father.setFamily(f4);
-//        childen.setFamily(f4);
-//        mother.setPet(pet);
-//        father.setPet(pet);
-//        childen.setPet(pet);
-//        System.out.println("Family N4 with links =="+f4.toString());
-//        System.out.println("Всі доступні методи у дитини");
-//        System.out.println(childen.toString());
-//        System.out.println(childen.getName());
-//        System.out.println(childen.getSurname());
-//        System.out.println(childen.getIq());
-//        System.out.println(childen.getPet());
-//        System.out.println(childen.getFamily());
-//        childen.describePet();
-//        childen.greetPet();
-//        childen.getSchedule();
-//        pet.respond();
-//        pet.eat();
-//        pet.foul();
-//        f4.deleteChild(new Human("Alex","Krepkiy",2012));
-        /*
-        Loop that full memory and fire method finalize();
-        int counter = 0;
-        do {
-            System.out.println(counter);
-            new Human("Den","Secretovskiy",1991, Family.builder().withFather(new Human("Anto","Kirov",1992)).withMother(new Human("Oksana","Danivna",2001)).build());
-            counter++;
-        } while (!(counter ==10000000)); */
-//        Human test = f4.bornChild();
-//        System.out.print("Boy: ");
-//        System.out.println(test instanceof Men);
-//        System.out.print("Girl: ");
-//        System.out.println(test instanceof Women);
-//        System.out.println(f4.getChildren());
-        Human mother = new Human("Olesa","Krepkiy","20/09/2023");
-        System.out.println(mother.describeAge());
+        Family f1 = Family.builder().withMother(new Human("Oksana","Pertovna","10/08/1992")).withFather(new Human("Oleg","Kopchik","10/08/1994"))
+                .build();
+
+        Family f2 = Family.builder().withMother(new Human("Yana","Hujen","10/08/1994")).withFather(new Human("Den","Topik","10/08/1999")).withChildren(new Human[]{new Human("Diana","Dovbik","10/08/2014")})
+                .build();
+
+        Family f3 = Family.builder().withMother(new Human("Yana","Hujen","10/02/1992")).withFather(new Human("Den","Topik","10/08/1992")).withChildren(new Human[]{new Human("Diana","Petrik","10/08/2014")}).withPet(new Dog("Kiten",6,12,new String[]{"bark","walk"}))
+                .build();
+
+
+        Women mother = new Women("Olesa","Krepkiy");
+        Men father = new Men("Olegka","Krepkiy","12/12/1991");
+        Human child01 = new Human("Olegka","Krepkiy","12/12/1991");
+        DomesticCat pet = new DomesticCat("Snejok",1,51,new String[]{"eat carrot","sleep"});
+        Family f4 = Family.builder().withMother(mother).withFather(father).withPet(pet).build();
+        ArrayList<Family> fl = new ArrayList<>();
+        fl.add(f1);
+        fl.add(f2);
+
+
+        FamilyController rodDom325 = new FamilyController(new FamilyService(new CollectionFamilyDao(fl)));
+        rodDom325.createNewFamily(mother,father);
+
+        rodDom325.addNewFamily(f3);
+        rodDom325.addNewFamily(f4);
+        System.out.println("AllFam----");
+        rodDom325.displayAllFamilies();
+        System.out.println("getFamiliesBiggerThan----");
+        rodDom325.getFamiliesBiggerThan(2);
+        System.out.println("getFamiliesLessThan----");
+        rodDom325.getFamiliesLessThan(3);
+        System.out.println("countFamiliesWithMemberNumber----");
+        rodDom325.countFamiliesWithMemberNumber(3);
+        System.out.println("bornChild----");
+        rodDom325.bornChild(f1,"Anna","Gerakl");
+        rodDom325.bornChild(f1,"Olya","Jeck");
+        System.out.println(rodDom325.getFamilyById(1).getChildren());
+        System.out.println("adoptChild----");
+        rodDom325.adoptChild(f1,child01);
+
+       System.out.println(rodDom325.adoptChild(f1,child01));
+        System.out.println("deleteAllChildrenOlderThen --->");
+//        rodDom325.deleteAllChildrenOlderThen(13);
+        System.out.println(rodDom325.deleteAllChildrenOlderThen(15));
+        System.out.println("count() --->");
+
+        System.out.println(rodDom325.count());
+        System.out.println(rodDom325.addPet(1,pet));
+        System.out.println(rodDom325.getPets(1));
     }
 }

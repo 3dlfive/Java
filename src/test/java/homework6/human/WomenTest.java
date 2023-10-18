@@ -14,7 +14,7 @@ public class WomenTest {
     @Test
     @DisplayName("Test makeup method")
     public void makeup() {
-        women1 = new Women("Anna","Petrivna",2012);
+        women1 = new Women("Anna","Petrivna");
         boolean result = women1.makeup(true);
         assertTrue(result);
     }

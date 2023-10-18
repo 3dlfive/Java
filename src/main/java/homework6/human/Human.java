@@ -51,7 +51,7 @@ public class Human {
         this.setSchedule(scheduleArg);
     }
     Human(){
-        this("UnknownName","UnknownSurname","20/03/2016",0,new Dog(),null,setDefaultSchedule());
+        this("UnknownName","UnknownSurname",LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),0,new Dog(),null,setDefaultSchedule());
     }
     public Human(String nameArg, String surnameArg, String yearArg,  Family family){
         this( nameArg,surnameArg,yearArg,1,new Dog(), family,setDefaultSchedule());
@@ -65,8 +65,16 @@ public class Human {
         this(nameArg,surnameArg,yearArg,1,new Dog(),null, setDefaultSchedule());
 
     }
+    public Human(String nameArg, String surnameArg){
+        this(nameArg,surnameArg, LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),1,new Dog(),null, setDefaultSchedule());
+
+    }
     public Human(String nameArg, String surnameArg, String yearArg,int iqA){
         this(nameArg,surnameArg,yearArg,iqA,new Dog(),null, setDefaultSchedule());
+
+    }
+    public Human(String nameArg, String surnameArg, int iqA,Family family){
+        this(nameArg,surnameArg,LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),iqA,new Dog(),family, setDefaultSchedule());
 
     }
     public void setSchedule(LinkedHashMap<DayOfWeek,String> arr) {
@@ -188,7 +196,7 @@ public class Human {
         return "Human{" +
                 "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", year=" + year +
+                ", year=" + LocalDate.ofEpochDay(this.year) +
                 ", iq=" + iq +
                 ", schedule=" + getSchedule() +
                 '}';

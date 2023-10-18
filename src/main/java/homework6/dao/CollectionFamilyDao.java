@@ -10,6 +10,8 @@ public class CollectionFamilyDao implements FamilyDao {
 
     public CollectionFamilyDao(ArrayList<Family> familyList) {
         this.familyList = familyList;
+    }    public CollectionFamilyDao() {
+        this.familyList = new ArrayList<>();
     }
 
     @Override
@@ -36,10 +38,19 @@ public class CollectionFamilyDao implements FamilyDao {
 
     @Override
     public Boolean saveFamily(Family family) {
-        return this.familyList.add(family);
+        if (familyList.contains(family)){
+            List <Family> newList = familyList.stream().map(el->el.equals(family)?family:el).toList();
+            return true;
+        } else {
+            return this.familyList.add(family);
+        }
     }
 
     public List<Family> getFamilyList() {
         return familyList;
+    }
+
+    public void setFamilyList(ArrayList<Family> familyList) {
+        this.familyList = familyList;
     }
 }
