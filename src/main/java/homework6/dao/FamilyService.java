@@ -5,7 +5,6 @@ import homework6.human.Human;
 import homework6.human.Men;
 import homework6.human.Women;
 import homework6.pet.Pet;
-import org.w3c.dom.ls.LSOutput;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -13,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class FamilyService {
@@ -80,29 +80,28 @@ return  family;
 
     };
 //
-public int deleteAllChildrenOlderThen(int age){
+public CollectionFamilyDao deleteAllChildrenOlderThen(int age){
     LocalDate ln = LocalDate.now();
-
+    AtomicInteger counter = new AtomicInteger();
     // return count of delegated child
     ArrayList<Family>  flist= familyDB.getAllFamilies();
-    int counter = 0;
-    for(Family eF:flist){
 
-        ArrayList<Human> childs = eF.getChildren();
-        for(Human child:childs){
-            LocalDate ld = LocalDate.ofEpochDay(child.getYear());
-            Period period = Period.between(ld, ln);
-            if(period.getYears()>=age){
-                eF.deleteChild(child);
-                familyDB.saveFamily(eF);
-                counter++;
-            }
+    flist.stream().forEach(el-> {
+        ArrayList<Human> filteredChilderns = (ArrayList<Human>) el.getChildren().stream()
+                .filter(child -> {
+                    LocalDate ld = LocalDate.ofEpochDay(child.getYear());
+                    Period period = Period.between(ld, ln);
+                    if (period.getYears() < age) {
+                        return true;
+                    }
+                    return false;
+                }).collect(Collectors.toList());
+        el.setChildren(filteredChilderns);
+        familyDB.saveFamily(el);
+    });
 
-        }
 
-    }
-
-    return counter;
+    return familyDB;
 
 };
     public int count(){

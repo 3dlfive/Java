@@ -56,7 +56,9 @@ public class Main {
        System.out.println(rodDom325.adoptChild(f1,child01));
         System.out.println("deleteAllChildrenOlderThen --->");
 //        rodDom325.deleteAllChildrenOlderThen(13);
-        System.out.println(rodDom325.deleteAllChildrenOlderThen(15));
+        System.out.println(rodDom325.getFamilyById(0));
+        rodDom325.deleteAllChildrenOlderThen(30);
+        System.out.println(rodDom325.getFamilyById(0));
         System.out.println("count() --->");
 
         System.out.println(rodDom325.count());

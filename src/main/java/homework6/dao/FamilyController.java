@@ -7,6 +7,7 @@ import homework6.pet.Pet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class FamilyController {
     FamilyService service;
@@ -37,7 +38,7 @@ public class FamilyController {
     public Family adoptChild(Family family,Human child){
         return service.adoptChild(family,child);
     }
-    public int deleteAllChildrenOlderThen(int age){
+    public CollectionFamilyDao deleteAllChildrenOlderThen(int age){
         return service.deleteAllChildrenOlderThen(age);
     }
     public int count(){

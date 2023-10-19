@@ -133,6 +133,10 @@ public class Family implements HumanCreator {
         return Objects.hash(getMother(), getFather());
     }
 
+    public void setChildren(ArrayList<Human> children) {
+        this.children = children;
+    }
+
     public static class FamilyBuilder {
         private Human mother;
         private Human father;
