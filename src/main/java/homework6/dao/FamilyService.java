@@ -27,15 +27,15 @@ public class FamilyService {
     }
 
     public void displayAllFamilies(){
-        System.out.println(familyDB.getAllFamilies());
+        familyDB.getAllFamilies().stream().forEach(el-> System.out.println(el.prettyFormat()));
     }
     public void getFamiliesBiggerThan(int biggerThan) {
         List<Family> fl = familyDB.getAllFamilies();
-        fl.stream().filter(el->el.countFamily()>biggerThan).forEach(System.out::println);
+        fl.stream().filter(el->el.countFamily()>biggerThan).forEach(el-> System.out.println(el.prettyFormat()));
     };
     public void getFamiliesLessThan(int lessThan){
         List<Family> fl = familyDB.getAllFamilies();
-        fl.stream().filter(el->el.countFamily()>lessThan).forEach(System.out::println);
+        fl.stream().filter(el->el.countFamily()>lessThan).forEach(el-> System.out.println(el.prettyFormat()));
     };
     public int countFamiliesWithMemberNumber(int famSize){
         return  familyDB.getAllFamilies().stream().map(Family::countFamily).reduce(0, (accumulator, el) -> (el >= famSize) ? accumulator + 1 : accumulator);

@@ -64,19 +64,8 @@ public class Main {
         System.out.println(rodDom325.count());
         System.out.println(rodDom325.addPet(1,pet));
 //        System.out.println(rodDom325.getPets(1));
-
+        rodDom325.displayAllFamilies();
         System.out.println(f2.prettyFormat());
-//        System.out.println(f2.prettyFormat());
-//        System.out.println(f3.prettyFormat());
-//        System.out.println(f4.prettyFormat());
-//        f1.getChildren().forEach(e-> {
-//            System.out.println(e.getClass());
-//            if (e instanceof Men){
-//                System.out.println("boy");
-//            }
-//            if (e instanceof Women){
-//                System.out.println("girl");
-//            }
-//        });
+
     }
 }
