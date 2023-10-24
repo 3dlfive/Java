@@ -25,7 +25,7 @@ public class Main {
 
         Women mother = new Women("Olesa","Krepkiy");
         Men father = new Men("Olegka","Krepkiy","12/12/1991");
-        Human child01 = new Human("Olegka","Krepkiy","12/12/1991");
+        Human child01 = new Men("Olegka","Krepkiy","12/12/1991");
         DomesticCat pet = new DomesticCat("Snejok",1,51,new String[]{"eat carrot","sleep"});
         Family f4 = Family.builder().withMother(mother).withFather(father).withPet(pet).build();
         ArrayList<Family> fl = new ArrayList<>();
@@ -63,6 +63,20 @@ public class Main {
 
         System.out.println(rodDom325.count());
         System.out.println(rodDom325.addPet(1,pet));
-        System.out.println(rodDom325.getPets(1));
+//        System.out.println(rodDom325.getPets(1));
+
+        System.out.println(f2.prettyFormat());
+//        System.out.println(f2.prettyFormat());
+//        System.out.println(f3.prettyFormat());
+//        System.out.println(f4.prettyFormat());
+//        f1.getChildren().forEach(e-> {
+//            System.out.println(e.getClass());
+//            if (e instanceof Men){
+//                System.out.println("boy");
+//            }
+//            if (e instanceof Women){
+//                System.out.println("girl");
+//            }
+//        });
     }
 }

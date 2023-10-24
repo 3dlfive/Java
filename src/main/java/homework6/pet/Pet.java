@@ -40,6 +40,13 @@ public abstract class Pet {
         System.out.println(myReturnString);
         return myReturnString;
     }
+    public String prettyFormat(){
+        return "{species="+species.getTranslation() + "\'"+
+                ", nickname='" + this.getNickname() + "\'"+
+                ", age='" + this.getAge() + "\'"+
+                ", trickLevel='" + this.getTrickLevel() + "\'"+
+                ", habits='" + this.getHabits() + "}";
+    }
     @Override
     public void finalize(){
         System.out.println("Обєкт прибраний" +this.toString());

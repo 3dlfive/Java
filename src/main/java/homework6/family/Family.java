@@ -127,7 +127,26 @@ public class Family implements HumanCreator {
         Family family = (Family) o;
         return Objects.equals(getMother(), family.getMother()) && Objects.equals(getFather(), family.getFather());
     }
-
+    public String prettyFormat(){
+        String header = "family: ";
+        String mother ="\n\tmother: "+this.getMother().prettyFormat()+",";
+        String father ="\n\tfather: "+this.getFather().prettyFormat()+",";
+        String header2 = "\n\tchildren: ";
+        StringBuilder child = new StringBuilder();
+        this.getChildren().stream().forEach(el->{
+            StringBuilder stringBuilder = new StringBuilder((el instanceof Men) ? "\n\t\tboy:" + el.prettyFormat() : "\n\t\tgirl:" + el.prettyFormat());
+            child.append(stringBuilder);
+        });
+        StringBuilder mpets = new StringBuilder("[");
+        this.getPet().stream().forEach(el->{
+            if(el!=null) {
+                mpets.append(el.prettyFormat());
+//                System.out.println(el.prettyFormat());
+            }
+        });
+        mpets.append("]");
+        return header+mother+father+header2+child+"\n\tpets:"+mpets;
+    }
     @Override
     public int hashCode() {
         return Objects.hash(getMother(), getFather());

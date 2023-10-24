@@ -201,7 +201,15 @@ public class Human {
                 ", schedule=" + getSchedule() +
                 '}';
     }
-
+    public String prettyFormat() {
+        return "{" +
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", birthDate=" + LocalDate.ofEpochDay(this.birthDate).format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) +
+                ", iq=" + iq +
+                ", schedule=" + getSchedule() +
+                '}';
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
