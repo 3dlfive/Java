@@ -17,7 +17,7 @@ public class Main {
 
         while (true) {
             startFamService();
-            int userinput = askUserMainM(1, 9);
+            int userinput = askUserMainM(1, 10);
             mainMenu(appController, userinput);
 
         }
@@ -89,6 +89,10 @@ public class Main {
                 System.out.println("--Меню Видалити всіх дітей старше віку");
                 appController.deleteAllChildrenOlderThen(askUserMainM(1, 200));
                 break;
+            case 10:
+                System.out.println("--Завантажити данні з файлу");
+                appController.loadfromFile();
+                break;
             default:
                 System.out.println("Unknows switch");
         }
@@ -153,6 +157,7 @@ public class Main {
                 - 8. Редагувати сім'ю за індексом сім'ї у загальному списку
                 - 9. Видалити всіх дітей старше віку (у всіх сім'ях видаляються діти старше зазначеного віку - вважатимемо, що вони виросли)
                    - Запитати цікавий вік
+                - 10. Завантажити данні з файлу.(в файлі db.bin)
                 """;
         System.out.println(menuInfo);
 

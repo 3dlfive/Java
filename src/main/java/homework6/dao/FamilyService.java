@@ -28,6 +28,10 @@ public class FamilyService {
         this.familyDB = familyDao;
     }
 
+    public void loadD() {
+        this.familyDB.loadData();
+    }
+
     public void displayAllFamilies() {
         familyDB.getAllFamilies().stream().forEach(el -> System.out.println(el.prettyFormat()));
     }

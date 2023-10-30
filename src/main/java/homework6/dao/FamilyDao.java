@@ -8,11 +8,15 @@ import java.util.List;
 
 public interface FamilyDao {
     List<Family> getAllFamilies();
+
     Family getFamilyByIndex(int index);
+
     Boolean deleteFamilyByIndex(int index);
+
     Boolean deleteFamily(Family family);
+
     Boolean saveFamily(Family family);
 
-
+    List<Family> loadData();
 
 }

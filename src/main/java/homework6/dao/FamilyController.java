@@ -56,6 +56,10 @@ public class FamilyController {
 
     ;
 
+    public void loadfromFile() {
+        service.loadD();
+    }
+
     public int countFamiliesWithMemberNumber(int famSize) {
         return service.countFamiliesWithMemberNumber(famSize);
     }
