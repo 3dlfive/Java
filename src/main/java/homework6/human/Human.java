@@ -4,44 +4,48 @@ import homework6.family.Family;
 import homework6.pet.Dog;
 import homework6.pet.Pet;
 
-import java.util.Arrays;
+
+import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Period;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Objects;
 
-public class Human {
+public class Human implements Serializable {
+    static final long serialVersionUID = 1;
+
     private String name;
     private String surname;
-    private int year;
+    private long birthDate;
+
     private int iq; // 0-100
-    private Pet pet ; // Object Pet
+    private Pet pet; // Object Pet
     private Family family;
-//    static {
-//        System.out.println("New class Human loaded");
-//        }
-//    {
-//        System.out.println("New Human object created.");
-//    }
+    private LinkedHashMap<DayOfWeek, String> schedule = new LinkedHashMap<>();
 
-    private String[][] schedule ;
-    Human(){
-        this("UnknownName","UnknownSurname",1991,0,new Dog(),null,new String[][] {{DayOfWeek.SUNDAY.name(),DayOfWeek.MONDAY.name(),DayOfWeek.THURSDAY.name(),DayOfWeek.WEDNESDAY.name(),DayOfWeek.TUESDAY.name(),DayOfWeek.FRIDAY.name(),DayOfWeek.SATURDAY.name()},{"t1","t2","t3","t4","t5","t5","t5"}});
+    static {
+        System.out.println("New class Human loaded");
     }
-    public Human(String nameArg, String surnameArg, int yearArg,  Family family){
-        this( nameArg,surnameArg,yearArg,1,new Dog(), family,new String[][] {{DayOfWeek.SUNDAY.name(),DayOfWeek.MONDAY.name(),DayOfWeek.THURSDAY.name(),DayOfWeek.WEDNESDAY.name(),DayOfWeek.TUESDAY.name(),DayOfWeek.FRIDAY.name(),DayOfWeek.SATURDAY.name()},{"t1","t2","t3","t4","t5","t5","t5"}});
 
-    }
-    public Human(String nameArg, String surnameArg, int yearArg,int iqA, Family family){
-        this( nameArg,surnameArg,yearArg,iqA,new Dog(), family,new String[][] {{DayOfWeek.SUNDAY.name(),DayOfWeek.MONDAY.name(),DayOfWeek.THURSDAY.name(),DayOfWeek.WEDNESDAY.name(),DayOfWeek.TUESDAY.name(),DayOfWeek.FRIDAY.name(),DayOfWeek.SATURDAY.name()},{"t1","t2","t3","t4","t5","t5","t5"}});
+    {
+        System.out.println("New Human object created.");
+        //Create empty scheduler
+        for (DayOfWeek day : DayOfWeek.values()) {
+            schedule.put(day, "No entry.");
+        }
 
-    }
-    public Human(String nameArg, String surnameArg, int yearArg){
-        this(nameArg,surnameArg,yearArg,1,new Dog(),null, new String[][] {{DayOfWeek.SUNDAY.name(),DayOfWeek.MONDAY.name(),DayOfWeek.THURSDAY.name(),DayOfWeek.WEDNESDAY.name(),DayOfWeek.TUESDAY.name(),DayOfWeek.FRIDAY.name(),DayOfWeek.SATURDAY.name()},{"t1","t2","t3","t4","t5","t5","t5"}});
-
-    }    public Human(String nameArg, String surnameArg, int yearArg,int iqA){
-        this(nameArg,surnameArg,yearArg,iqA,new Dog(),null, new String[][] {{DayOfWeek.SUNDAY.name(),DayOfWeek.MONDAY.name(),DayOfWeek.THURSDAY.name(),DayOfWeek.WEDNESDAY.name(),DayOfWeek.TUESDAY.name(),DayOfWeek.FRIDAY.name(),DayOfWeek.SATURDAY.name()},{"t1","t2","t3","t4","t5","t5","t5"}});
 
     }
 
-    Human(String nameArg, String surnameArg, int yearArg, int iqArg,Pet petArg, Family family, String[][] scheduleArg){
+//    private String[][] schedule ;
+
+    Human(String nameArg, String surnameArg, String yearArg, int iqArg, Pet petArg, Family family, LinkedHashMap<DayOfWeek, String> scheduleArg) {
         this.setName(nameArg);
         this.setSurname(surnameArg);
         this.setYear(yearArg);
@@ -50,24 +54,77 @@ public class Human {
         this.setFamily(family);
         this.setSchedule(scheduleArg);
     }
-    public void greetPet(){
-        System.out.printf("Привіт, %s \n",pet.getNickname());
+
+    Human() {
+        this("UnknownName", "UnknownSurname", LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")), 0, new Dog(), null, setDefaultSchedule());
     }
-    public void describePet(){
-        System.out.printf("У мене є %s, їй %s років, він %s \n",pet.getSpecies().getTranslation(),pet.getAge(),pet.getTrickLevel()>50?"дуже хитрий":"майже не хитрий");
+
+    public Human(String nameArg, String surnameArg, String yearArg, Family family) {
+        this(nameArg, surnameArg, yearArg, 1, new Dog(), family, setDefaultSchedule());
+
     }
-    public boolean feedPet(boolean bool){
-        int r = (int)(Math.random()*100);
+
+    public Human(String nameArg, String surnameArg, String yearArg, int iqA, Family family) {
+        this(nameArg, surnameArg, yearArg, iqA, new Dog(), family, setDefaultSchedule());
+
+    }
+
+    public Human(String nameArg, String surnameArg, String yearArg) {
+        this(nameArg, surnameArg, yearArg, 1, new Dog(), null, setDefaultSchedule());
+
+    }
+
+    public Human(String nameArg, String surnameArg) {
+        this(nameArg, surnameArg, LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")), 1, new Dog(), null, setDefaultSchedule());
+
+    }
+
+    public Human(String nameArg, String surnameArg, String yearArg, int iqA) {
+        this(nameArg, surnameArg, yearArg, iqA, new Dog(), null, setDefaultSchedule());
+
+    }
+
+    public Human(String nameArg, String surnameArg, int iqA, Family family) {
+        this(nameArg, surnameArg, LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")), iqA, new Dog(), family, setDefaultSchedule());
+
+    }
+
+    public void setSchedule(LinkedHashMap<DayOfWeek, String> arr) {
+        this.schedule = new LinkedHashMap<>(arr);
+
+
+    }
+
+    public static LinkedHashMap<DayOfWeek, String> setDefaultSchedule() {
+        LinkedHashMap<DayOfWeek, String> schedule2 = new LinkedHashMap<>();
+        for (DayOfWeek day : DayOfWeek.values()) {
+            schedule2.put(day, "No entry.");
+        }
+        return schedule2;
+
+
+    }
+
+    public void greetPet() {
+        System.out.printf("Привіт, %s \n", pet.getNickname());
+    }
+
+    public void describePet() {
+        System.out.printf("У мене є %s, їй %s років, він %s \n", pet.getSpecies().getTranslation(), pet.getAge(), pet.getTrickLevel() > 50 ? "дуже хитрий" : "майже не хитрий");
+    }
+
+    public boolean feedPet(boolean bool) {
+        int r = (int) (Math.random() * 100);
         int petT = this.pet.getTrickLevel();
-        if (bool){
+        if (bool) {
             System.out.println("Pet is feeded.");
             return true;
-        }else{
-            if ( petT!=r){
-                System.out.printf("Думаю, %s не голодний.\n",this.pet.getNickname());
+        } else {
+            if (petT != r) {
+                System.out.printf("Думаю, %s не голодний.\n", this.pet.getNickname());
                 return false;
             } else {
-                System.out.printf("Хм... годувати %s \n",this.pet.getNickname());
+                System.out.printf("Хм... годувати %s \n", this.pet.getNickname());
                 return true;
 
             }
@@ -90,12 +147,31 @@ public class Human {
         this.surname = surname;
     }
 
-    public int getYear() {
-        return year;
+    public long getYear() {
+        return birthDate;
     }
 
-    public void setYear(int year) {
-        this.year = year;
+    public String describeAge() {
+
+        LocalDate ln = LocalDate.now();
+        System.out.println(ln);
+        LocalDate ld = LocalDate.ofEpochDay(this.birthDate);
+
+        System.out.println(ld);
+        Period period = Period.between(ld, ln);
+        String s = String.format("кількість років %s, місяців %s та днів життя людини %s", period.getYears(), period.getMonths(), period.getDays());
+
+        return s;
+    }
+
+    public void setYear(String year) {
+
+        LocalDate time = LocalDate.parse(year, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        ;
+        ZoneId zoneId = ZoneId.systemDefault(); // or: ZoneId.of("Europe/Oslo");
+        long epoch = time.toEpochDay();
+//      //20/03/2016
+        this.birthDate = epoch;
     }
 
     public int getIq() {
@@ -103,9 +179,9 @@ public class Human {
     }
 
     public void setIq(int iq) {
-        if ((iq>0 && iq<100)){
+        if ((iq > 0 && iq < 100)) {
             this.iq = iq;
-        } else{
+        } else {
             throw new IllegalStateException("We expect iq in range 0-100. ");
         }
 
@@ -119,39 +195,37 @@ public class Human {
         this.pet = pet;
     }
 
-    public void setFamily(Family f){
-        this.family=f;
-    }
-    public  Family getFamily(){
-     return family;
+    public void setFamily(Family f) {
+        this.family = f;
     }
 
-
-
-    public void setSchedule(String[][] schedule) {
-        this.schedule = schedule;
-
+    public Family getFamily() {
+        return family;
     }
-    public String[] getScheduleNormolized() {
-        String[] normalizedArray = new String[schedule[0].length];
 
-        for (int cell=0;cell<normalizedArray.length;cell++){
-            normalizedArray[cell]="["+schedule[0][cell]+","+schedule[1][cell]+"]";
-        }
 
-        return normalizedArray;
-        }
-    public String[][] getSchedule() {
-     return schedule;
+    public HashMap<DayOfWeek, String> getSchedule() {
+        return schedule;
     }
+
     @Override
     public String toString() {
         return "Human{" +
                 "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", year=" + year +
+                ", year=" + LocalDate.ofEpochDay(this.birthDate).format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) +
                 ", iq=" + iq +
-                ", schedule=" + Arrays.toString(getScheduleNormolized()) +
+                ", schedule=" + getSchedule() +
+                '}';
+    }
+
+    public String prettyFormat() {
+        return "{" +
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", birthDate=" + LocalDate.ofEpochDay(this.birthDate).format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) +
+                ", iq=" + iq +
+                ", schedule=" + getSchedule() +
                 '}';
     }
 
@@ -162,10 +236,12 @@ public class Human {
         Human human = (Human) o;
         return getYear() == human.getYear() && Objects.equals(getName(), human.getName()) && Objects.equals(getSurname(), human.getSurname());
     }
+
     @Override
-    public void finalize(){
-        System.out.println("Обєкт прибраний" +this.toString());
+    public void finalize() {
+        System.out.println("Обєкт прибраний" + this.toString());
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(getName(), getSurname(), getYear());

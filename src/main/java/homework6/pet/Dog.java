@@ -7,7 +7,7 @@ public class Dog extends Pet implements startFoul {
     }
 
     public Dog() {
-        super("Unknown",1,0,null);
+        super("Unknown",1,0,new String[]{"UNKNOWN"});
         super.setSpecies(Species.DOG);
     }
     @Override

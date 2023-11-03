@@ -10,11 +10,12 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class FamilyTest {
+public class FamilyTest {
     Family f1 ;
     Family f3 ;
     Human newChild;
@@ -46,9 +47,9 @@ class FamilyTest {
     @Test
     @DisplayName("Add one child to Family.")
     void addChildArrayIncreaseItSizeByOne() {
-        int sizeBefore = f3.getChildren().length;
+        int sizeBefore = f3.getChildren().size();
         f3.addChild(new Human("Kenny","Amaya",2016,f3));
-        int sizeAfterAdding = f3.getChildren().length;
+        int sizeAfterAdding = f3.getChildren().size();
         assertEquals(sizeBefore + 1, sizeAfterAdding);
     }
     @Test
@@ -57,14 +58,12 @@ class FamilyTest {
 
 
         f3.addChild(newChild);
-        Human[] childs =f3.getChildren();
-        boolean inArray=false;
-        for (Human el:childs){
-            if (el == newChild){
-                inArray=true;
-            }
-        }
-        assertTrue(inArray);
+
+        ArrayList<Human> childs =f3.getChildren();
+        System.out.println(childs);
+        System.out.println(newChild);
+        System.out.println("childs");
+        assertTrue( childs.contains(newChild));
 
     }
 
@@ -108,7 +107,8 @@ class FamilyTest {
                 .build();
         Human chTest = new Human("DianaZ","Dovbik",2012);
         boolean isDeleated = fam1.deleteChild(chTest);
-        System.out.println(Arrays.toString(fam1.getChildren()));
+        System.out.println(isDeleated);
+//        System.out.println(Arrays.toString(fam1.getChildren()));
 
         boolean expectedResult=false;
 
@@ -123,9 +123,9 @@ class FamilyTest {
                 .build();
         fam1.addChild(newChild);
         fam1.addChild(newChild2);
-        int expectedResult =fam1.getChildren().length;
+        int expectedResult =fam1.getChildren().size();
         f3.deleteChild(5);
-        assertEquals(fam1.getChildren().length,expectedResult);
+        assertEquals(fam1.getChildren().size(),expectedResult);
     }
 
     @Test
@@ -145,7 +145,7 @@ class FamilyTest {
         String expected = "Family{" +
                 "mother=" + f1.getMother() +
                 ", father=" + f1.getFather() +
-                ", children=" + Arrays.toString(f1.getChildren()) +
+                ", children=" + f1.getChildren() +
                 ", pet=" + f1.getPet() +
                 '}';
         assertEquals(expected,result);

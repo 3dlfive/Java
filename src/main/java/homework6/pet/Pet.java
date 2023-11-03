@@ -1,29 +1,32 @@
 package homework6.pet;
 
 
-import java.util.Arrays;
-import java.util.Objects;
+import java.io.Serializable;
+import java.util.*;
 
-public abstract class Pet {
-
+public abstract class Pet implements Serializable {
+    static final long serialVersionUID = 1;
     private String nickname;
     private Species species = Species.UNKNOWN;
     private int age;
     private int trickLevel; //0-100
-    private String[] habits;
-//    static {
+    private Set<String> habits = new HashSet<String>();
+
+    //    static {
 //        System.out.println("New Pet Family loaded");
 //    }
 //    {
 //        System.out.println("New Pet object created.");
 //    }
-    Pet(String nickname2){
-        this(nickname2,0,0,new String[]{"play on street","sleep a lot"});
+    Pet(String nickname2) {
+        this(nickname2, 0, 0, new String[]{"play on street", "sleep a lot"});
     }
-    Pet(){
-        this("unknownName",0,1,new String[]{});
+
+    Pet() {
+        this("unknownName", 0, 1, new String[]{"UNKNOWN"});
     }
-    public Pet( String nickname, int age2, int trickLevel2, String[] habbits2){
+
+    public Pet(String nickname, int age2, int trickLevel2, String[] habbits2) {
 
         this.setNickname(nickname);
         this.setAge(age2);
@@ -31,20 +34,33 @@ public abstract class Pet {
         this.setHabits(habbits2);
 
     }
-    public void eat(){
+
+    public void eat() {
         System.out.println("Я ї'м!");
     }
+
     public abstract void respond();
+
     @Override
-    public String toString(){
-        String myReturnString = String.format("%s{nickname='%s', age=%d, trickLevel=%d, habits=[%s] \nВміє літати? %s\nМає вовну? %s\nКількість лап %s",species.getTranslation(),nickname,age,trickLevel, Arrays.toString(habits),species.isCanFly(),species.isHasFur(),species.getNumberOfLegs());
+    public String toString() {
+        String myReturnString = String.format("%s{nickname='%s', age=%d, trickLevel=%d, habits=[%s] \nВміє літати? %s\nМає вовну? %s\nКількість лап %s", species.getTranslation(), nickname, age, trickLevel, habits, species.isCanFly(), species.isHasFur(), species.getNumberOfLegs());
         System.out.println(myReturnString);
         return myReturnString;
     }
-    @Override
-    public void finalize(){
-        System.out.println("Обєкт прибраний" +this.toString());
+
+    public String prettyFormat() {
+        return "{species=" + species.getTranslation() + "\'" +
+                ", nickname='" + this.getNickname() + "\'" +
+                ", age='" + this.getAge() + "\'" +
+                ", trickLevel='" + this.getTrickLevel() + "\'" +
+                ", habits='" + this.getHabits() + "}";
     }
+
+    @Override
+    public void finalize() {
+        System.out.println("Обєкт прибраний" + this.toString());
+    }
+
     public void setSpecies(Species species) {
         this.species = species;
     }
@@ -54,7 +70,7 @@ public abstract class Pet {
     }
 
     public void setHabits(String[] habits) {
-        this.habits = habits;
+        this.habits.addAll(Arrays.asList(habits));
     }
 
     public void setNickname(String nickname) {
@@ -62,7 +78,7 @@ public abstract class Pet {
     }
 
     public void setTrickLevel(int trickLevel) {
-        if (trickLevel>=0&&trickLevel<=100){
+        if (trickLevel >= 0 && trickLevel <= 100) {
             this.trickLevel = trickLevel;
 
         } else {
@@ -86,7 +102,7 @@ public abstract class Pet {
         return trickLevel;
     }
 
-    public String[] getHabits() {
+    public Set<String> getHabits() {
         return habits;
     }
 

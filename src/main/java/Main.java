@@ -1,74 +1,199 @@
+import homework6.dao.CollectionFamilyDao;
+import homework6.dao.FamilyController;
+import homework6.dao.FamilyService;
 import homework6.family.Family;
 import homework6.human.Human;
 import homework6.human.Men;
 import homework6.human.Women;
-import homework6.pet.Dog;
-import homework6.pet.DomesticCat;
 
-import java.util.Arrays;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Family f1 = Family.builder().withMother(new Human("Oksana","Pertovna",1991)).withFather(new Human("Oleg","Kopchik",1992))
-                .build();
-        System.out.println(f1.getMother());
-        System.out.println(f1.getFather());
-        System.out.println(Arrays.toString(f1.getChildren()));
-        System.out.println(f1.getPet());
-        Family f2 = Family.builder().withMother(new Human("Yana","Hujen",1992)).withFather(new Human("Den","Topik",1992)).withChildren(new Human[]{new Human("Diana","Dovbik",2012)})
-                .build();
-        System.out.println(f2.getMother());
-        System.out.println(f2.getFather());
-        System.out.println(Arrays.toString(f2.getChildren()));
-        System.out.println(f2.getPet());
-        Family f3 = Family.builder().withMother(new Human("Yana","Hujen",1992)).withFather(new Human("Den","Topik",1992)).withChildren(new Human[]{new Human("Diana","Dovbik",2012)}).withPet(new Dog("Kiten",6,12,new String[]{"bark","walk"}))
-                .build();
-        System.out.println("Mother ===="+ f3.getMother());
-        System.out.println("Father ===="+ f3.getFather());
-        System.out.println("Children ===="+ Arrays.toString(f3.getChildren()));
-        System.out.println("Pet ===="+f3.getPet());
 
 
-        Human mother = new Human("Olesa","Krepkiy",1921);
-        Human father = new Human("Olegka","Krepkiy",1990,20);
-        Human childen = new Human("Alex","Krepkiy",2012);
-        DomesticCat pet = new DomesticCat("Snejok",1,51,new String[]{"eat carrot","sleep"});
-        Family f4 = Family.builder().withMother(mother).withFather(father).withChildren(new Human[]{childen}).withPet(pet).build();
-        System.out.println("Family N4 =="+f4.toString());
-        mother.setFamily(f4);
-        father.setFamily(f4);
-        childen.setFamily(f4);
-        mother.setPet(pet);
-        father.setPet(pet);
-        childen.setPet(pet);
-        System.out.println("Family N4 with links =="+f4.toString());
-        System.out.println("Всі доступні методи у дитини");
-        System.out.println(childen.toString());
-        System.out.println(childen.getName());
-        System.out.println(childen.getSurname());
-        System.out.println(childen.getIq());
-        System.out.println(childen.getPet());
-        System.out.println(childen.getFamily());
-        childen.describePet();
-        childen.greetPet();
-        childen.getScheduleNormolized();
-        pet.respond();
-        pet.eat();
-        pet.foul();
-//        f4.deleteChild(new Human("Alex","Krepkiy",2012));
-        /*
-        Loop that full memory and fire method finalize();
-        int counter = 0;
+        FamilyController appController = new FamilyController(new FamilyService(new CollectionFamilyDao()));
+
+
+        while (true) {
+            startFamService();
+            int userinput = askUserMainM(1, 10);
+            mainMenu(appController, userinput);
+
+        }
+
+    }
+
+    static void mainMenu(FamilyController appController, int userinput) {
+        switch (userinput) {
+            case 1:
+                appController.generateFam();
+                break;
+            case 2:
+                appController.displayAllFamilies();
+                break;
+            case 3:
+                System.out.println("--Меню Відобразити список сімей, де кількість людей більша за задану");
+                System.out.printf("Виберіть число до %s \n", appController.count());
+                appController.getFamiliesBiggerThan(askUserMainM(1, appController.count()));
+                break;
+            case 4:
+                System.out.printf("Виберіть число до %s \n", appController.count());
+                appController.getFamiliesLessThan(askUserMainM(1, appController.count()));
+                break;
+            case 5:
+                System.out.println("--Меню Підрахувати кількість сімей \n");
+
+                System.out.println(appController.count());
+                break;
+            case 6:
+
+                System.out.println("--Меню Створення нової родини \n");
+                createFamily(appController);
+
+                System.out.println(appController.count());
+                break;
+            case 7:
+                System.out.println("--Меню Видалення родини\n");
+                System.out.printf("\nВиберіть число до %s\n", appController.count());
+                appController.deleteByIndex(askUserMainM(1, appController.count()));
+                break;
+            case 8:
+                //Нужно доделать
+                System.out.println("--Меню зміна сімї за індексом");
+                String submenu2 = """
+                        - 1. Народити дитину
+                        - 2. Усиновити дитину
+                        - 3. Повернутися до головного меню
+                         """;
+                System.out.println(submenu2);
+                int userinputSM = askUserMainM(1, 3);
+                switch (userinputSM) {
+                    case 1:
+                        System.out.println("--Введіть дівоче імя");
+                        String girlname = askUserString();
+                        System.out.println("--Введіть чоловіче імя");
+                        String bouname = askUserString();
+                        System.out.println("--Введіть порядковий номер сім'ї ID");
+                        int famNumber = askUserMainM(1, appController.count());
+                        appController.bornChild(appController.getFamilyById(famNumber), girlname, bouname);
+                        break;
+                    case 2:
+                        callAdroptMethod(appController);
+                        break;
+                    case 3:
+                        break;
+                }
+                break;
+            case 9:
+                System.out.println("--Меню Видалити всіх дітей старше віку");
+                appController.deleteAllChildrenOlderThen(askUserMainM(1, 200));
+                break;
+            case 10:
+                System.out.println("--Завантажити данні з файлу");
+                appController.loadfromFile();
+                break;
+            default:
+                System.out.println("Unknows switch");
+        }
+
+
+    }
+
+    static void callAdroptMethod(FamilyController appController) {
+        System.out.println("--Введіть порядковий номер сім'ї ID");
+        int famN = askUserMainM(1, appController.count());
+        System.out.println("--Введіть  імя");
+        String name = askUserString();
+        System.out.println("--Введіть  Прізвище");
+        String lastname = askUserString();
+        System.out.println("--Введіть  рік народження  в форматі \"dd/MM/yyyy\" ");
+        String yearArg = askUserString();
+        appController.adoptChild(appController.getFamilyById(famN), new Human(name, lastname, yearArg));
+    }
+
+    static void createFamily(FamilyController appController) {
+        String mName;
+        String mLastname;
+        String birthdat;
+        int miq;
+        String fName;
+        String fLastname;
+        String fbirthdat;
+        int fiq;
+        System.out.println("ім'я матері");
+        mName = askUserString();
+        System.out.println("прізвище матері матері");
+        mLastname = askUserString();
+        System.out.println("Рік народженя матері \"dd/MM/yyyy\" ");
+        birthdat = askUserString();
+        System.out.println("Айкю матері");
+        miq = askUserMainM(1, 110);
+
+        System.out.println("ім'я батька");
+        fName = askUserString();
+        System.out.println("прізвище батька");
+        fLastname = askUserString();
+        System.out.println("Рік народженя батька \"dd/MM/yyyy\" ");
+        fbirthdat = askUserString();
+        System.out.println("Айкю батька");
+        fiq = askUserMainM(1, 110);
+        Women mother = new Women(mName, mLastname, birthdat, miq);
+        Men father = new Men(fName, fLastname, fbirthdat, fiq);
+        Family tempF = Family.builder().withFather(father).withMother(mother).build();
+        appController.addNewFamily(tempF);
+    }
+
+    static void startFamService() {
+        String menuInfo = """
+                ------------------------- MENU -----------------------------------------
+                - 1. Заповнити тестовими даними (автоматом створити кілька сімей та зберегти їх у базі)
+                - 2. Відобразити весь список сімей (відображає список усіх сімей з індексацією, що починається з 1)
+                - 3. Відобразити список сімей, де кількість людей більша за задану
+                - 4. Відобразити список сімей, де кількість людей менша за задану
+                - 5. Підрахувати кількість сімей
+                - 6. Створити нову родину
+                - 7. Видалити сім'ю за індексом сім'ї у загальному списку
+                - 8. Редагувати сім'ю за індексом сім'ї у загальному списку
+                - 9. Видалити всіх дітей старше віку (у всіх сім'ях видаляються діти старше зазначеного віку - вважатимемо, що вони виросли)
+                   - Запитати цікавий вік
+                - 10. Завантажити данні з файлу.(в файлі db.bin)
+                """;
+        System.out.println(menuInfo);
+
+    }
+
+    public static int askUserMainM(int from, int tonumber) {
+        Scanner sc = new Scanner(System.in);
+        Integer userInput = null;
+
+
         do {
-            System.out.println(counter);
-            new Human("Den","Secretovskiy",1991, Family.builder().withFather(new Human("Anto","Kirov",1992)).withMother(new Human("Oksana","Danivna",2001)).build());
-            counter++;
-        } while (!(counter ==10000000)); */
-        Human test = f4.bornChild();
-        System.out.print("Boy: ");
-        System.out.println(test instanceof Men);
-        System.out.print("Girl: ");
-        System.out.println(test instanceof Women);
-        System.out.println(Arrays.toString(f4.getChildren()));
+            if (!(userInput == null)) {
+                System.out.printf("\nThat's not a number in range from 1-%s.\n", tonumber);
+            }
+            while (!sc.hasNextInt()) {
+                System.out.printf("\nThat's not a number in range from 1-%s\n", tonumber);
+                sc.next();
+            }
+            userInput = sc.nextInt();
+        } while ((!(userInput >= from) || !(userInput <= tonumber)));
+        return userInput;
+    }
+
+    public static String askUserString() {
+        Scanner sc = new Scanner(System.in);
+        String userInput = null;
+
+
+        do {
+
+            while (!sc.hasNext()) {
+                System.out.printf("\n %s   -> That's not a string", userInput);
+                sc.next();
+            }
+            userInput = sc.nextLine();
+        } while (userInput.isEmpty());
+        return userInput;
     }
 }

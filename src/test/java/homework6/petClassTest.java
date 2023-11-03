@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-class petClassTest {
+public class petClassTest {
     @Test
     @DisplayName("Dog Names")
     void getPetName() {
