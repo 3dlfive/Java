@@ -1,5 +1,6 @@
 package homework6.dao;
 
+import homework6.CustomLogger.CustomLogger;
 import homework6.FamilyException.FamilyOverflowException;
 import homework6.family.Family;
 import homework6.human.Human;
@@ -16,6 +17,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class FamilyController {
     FamilyService service;
+    CustomLogger logger = new CustomLogger();
 
     public FamilyController(FamilyService familyService) {
         service = familyService;
@@ -43,36 +45,47 @@ public class FamilyController {
     }
 
     public void displayAllFamilies() {
+        logger.info("Display all famalies");
         service.displayAllFamilies();
     }
 
     public void getFamiliesBiggerThan(int biggerThan) {
+
+        logger.info(String.format("getFamiliesBiggerThan %s", biggerThan));
         service.getFamiliesBiggerThan(biggerThan);
     }
 
     public void getFamiliesLessThan(int lessThan) {
+        logger.info(String.format("getFamiliesLessThan %s", lessThan));
         service.getFamiliesLessThan(lessThan);
     }
 
     ;
 
     public void loadfromFile() {
+        logger.info("Load from file");
+
         service.loadD();
     }
 
     public int countFamiliesWithMemberNumber(int famSize) {
+        logger.info(String.format("countFamiliesWithMemberNumber %s", famSize));
         return service.countFamiliesWithMemberNumber(famSize);
     }
 
     ;
 
     public void createNewFamily(Human mother, Human father) {
+        logger.info(String.format("createNewFamily %s ,%s", mother, father));
         service.createNewFamily(mother, father);
+
     }
 
     ;
 
     public Family bornChild(Family family, String girlName, String menName) throws FamilyOverflowException {
+        logger.info(String.format("bornChild %s ,girlName %s, menName %s", family, girlName, menName));
+
         int famsize = family.countFamily();
         if (famsize >= 5) throw new FamilyOverflowException("Розмір родини більше або дорівнює 5", famsize);
 
@@ -80,26 +93,35 @@ public class FamilyController {
     }
 
     public Family adoptChild(Family family, Human child) throws FamilyOverflowException {
+        logger.info(String.format("adoptChild %s ,%s", family, child));
+
         int famsize = family.countFamily();
         if (famsize >= 5) throw new FamilyOverflowException("Розмір родини більше або дорівнює 5", famsize);
         return service.adoptChild(family, child);
     }
 
     public CollectionFamilyDao deleteAllChildrenOlderThen(int age) {
+        logger.info(String.format("deleteAllChildrenOlderThen %s", age));
         return service.deleteAllChildrenOlderThen(age);
     }
 
     public int count() {
-        return service.count();
+        int val = service.count();
+        logger.info(String.format("count %s", val));
+        return val;
     }
 
     public Family getFamilyById(int id) {
+        logger.info(String.format("getFamilyById %s", id));
+
         return service.getFamilyById(id);
     }
 
     ;
 
     public boolean deleteByIndex(int index) {
+        logger.info(String.format("deleteByIndex %s", index));
+
         return service.removeFamily(index);
     }
 
@@ -112,6 +134,8 @@ public class FamilyController {
     }
 
     public ArrayList<Family> addNewFamily(Family f) {
+        logger.info(String.format("addNewFamily %s", f));
+
         return service.addNewFamily(f);
     }
 }
